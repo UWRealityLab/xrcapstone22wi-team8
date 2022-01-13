@@ -58,3 +58,22 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# macOS
+.DS_Store
+
+# Hugo
+# https://github.com/github/gitignore/blob/main/community/Golang/Hugo.gitignore
+
+## Generated files by hugo
+docs/public/
+docs/resources/_gen/
+docs/assets/jsconfig.json
+hugo_stats.json
+
+## Executable may be added to repository
+hugo.exe
+hugo.darwin
+hugo.linux
+
+## Temporary lock file while building
+.hugo_build.lock
