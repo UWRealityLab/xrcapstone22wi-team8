@@ -1,6 +1,6 @@
 # https://gohugo.io/hosting-and-deployment/hosting-on-github/
 
-name: github pages
+name: GitHub Pages
 
 on:
   push:
