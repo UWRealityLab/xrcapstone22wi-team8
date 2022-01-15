@@ -1,3 +1,51 @@
 baseURL = 'https://uwrealitylab.github.io/xrcapstone22wi-team8/'
 languageCode = 'en-us'
 title = '2022 Winter XR Capstone Team 8'
+theme = "ananke"
+
+# Raw HTML in markdown
+[markup.goldmark.renderer]
+unsafe= true
+
+defaultContentLanguage = "en"
+SectionPagesMenu = "main"
+Paginate = 5
+googleAnalytics = ""
+enableRobotsTXT = true
+
+[languages]
+  [languages.en]
+    # TODO: update to project name
+    title = "2022 Winter XR Capstone Team 8"
+    weight = 1
+    contentDir = "content/en"
+  # TODO: support multiple languages? since we have translation on our plan
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+[params]
+  text_color = ""
+  author = "2022 Winter XR Capstone Team 8"
+  favicon = ""
+  site_logo = ""
+  # TODO: update description
+  description = "2022 Winter XR Capstone Team 8"
+  # choose a background color from any on this page: http://tachyons.io/docs/themes/skins/ and preface it with "bg-"
+  background_color_class = "bg-purple"  # UW-ish purple
+  # https://unsplash.com/photos/51IHV_v5iRs, Photo by Remy Gieling on Unsplash
+  # default ratio is 1440 × 642
+  featured_image = "https://images.unsplash.com/photo-1622979136013-fcbffb84789c"
+  recent_posts_number = 0
+
+# Name of social must match one of https://github.com/theNewDynamic/gohugo-theme-ananke#built-in-services
+
+[[params.ananke_socials]]
+name = "github"
+url = "https://github.com/UWRealityLab/xrcapstone22wi-team8"
+
+[[params.ananke_socials]]
+name = "rss"
+url = "https://uwrealitylab.github.io/xrcapstone22wi-team8/index.xml"

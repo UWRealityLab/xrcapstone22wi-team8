@@ -1,0 +1,26 @@
+---
+title: "About Us"
+description: "Bio/background of the team members"
+menu: main
+omit_header_text: true
+# https://unsplash.com/photos/Eu4nj471JMM, Photo by Taylor Vick on Unsplash
+featured_image: "https://images.unsplash.com/photo-1556077387-8863d4127fbf"
+---
+
+<!--
+The middle column and extra rows in the table adds a little more spacing.
+Eventually, I'm hoping that our images and texts will balance out the width.
+If it turns out that's not the case, I'll fix the layout later.
+-->
+
+<!-- and I'll probably switch to use my own picture if it turns out that's what everyone else does :) -->
+
+||||
+|--|--|--|
+|||**Eric Banisadr**|
+|||
+|||**Kyle Zhang**|
+|||
+|||**Yueqian Zhang**|
+|||
+|![Apollo's profile image](../images/zhuzhiyu.png)||**Apollo Zhu** is a BS/MS student studying Computer Engineering, interested in mixed reality and mobile technologies. You can learn more about and connect with Apollo by visiting their [GitHub](https://github.com/ApolloZhu), [LinkedIn](https://www.linkedin.com/in/apollozhu/), or [Twitter](https://twitter.com/zhuzhiyu_).|

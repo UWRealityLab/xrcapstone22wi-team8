@@ -2,9 +2,15 @@
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
 draft: true
+# The following are extra (optional) metadata for ananke
+# tags: ["tag1", "tag2"]
+# featured_image: ""
+# description: ""
 ---
 
 A 1 sentence description of what each team member worked on.
+
+<!--more-->
 
 ## New Features/Functionalities
 
