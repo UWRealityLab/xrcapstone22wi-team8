@@ -1,3 +1,9 @@
+---
+title: ""
+description: "2022 Winter XR Capstone Team 8"
+featured_image: ""
+---
+
 <!-- Quick description of your project -->
 
 <!-- TODO: update to actual description -->
