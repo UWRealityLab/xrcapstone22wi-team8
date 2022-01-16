@@ -19,7 +19,7 @@ If it turns out that's not the case, I'll fix the layout later.
 |--|--|--|
 |||**Eric Banisadr**|
 |||
-|||**Kyle Zhang**|
+|![Kyle's photo](../images/guohaz.jpeg)||**Kyle Zhang** is a BS/MS student in Paul G. Allen School with a concentration in ML and Robotics. He is very interested in VR/AR and excited to develop for this area for the first time.|
 |||
 |||**Yueqian Zhang**|
 |||
