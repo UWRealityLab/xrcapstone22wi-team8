@@ -9,11 +9,11 @@ author: "Apollo Zhu"
 description: "Hello World"
 ---
 
-Members of team 8 first meet each other, [brainstormed](https://docs.google.com/document/d/1DtN9eijKOOHU1nM1J7yWxtu3doVLpABxsm-z4Z42GnY/edit) what we want to do together, and settled on building a whiteboard app the bridges the real and virtual world. Apollo set up the website and Kyle added his bio to the team member's page.
+<!-- For this first week snippet you should focus on any testing of project ideas as well as any work done for your proof of concept. -->
+
+Members of team 8 first meet each other, [brainstormed](https://docs.google.com/document/d/1DtN9eijKOOHU1nM1J7yWxtu3doVLpABxsm-z4Z42GnY/edit) what we want to do together, and settled on building a whiteboard app the bridges the real and virtual world. Apollo set up the website and Kyle added his bio to the team members' page.
 
 <!--more-->
-
-<!-- For this first week snippet you should focus on any testing of project ideas as well as any work done for your proof of concept. -->
 
 ## New Features/Functionalities
 
