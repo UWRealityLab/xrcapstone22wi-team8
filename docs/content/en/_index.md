@@ -1,13 +1,13 @@
 ---
-title: ""
-description: "2022 Winter XR Capstone Team 8"
+title: "Boardless"
+description: "More than just a virtual whiteboard super-powering your communication"
 featured_image: ""
 ---
 
 <!-- Quick description of your project -->
 
-<!-- TODO: update to actual description -->
-More than just a whiteboard in VR.
+<!-- TODO: update to a more in-depth description -->
+Made with love by 2022 Winter XR Capstone Team 8.
 
 <!-- A hype/demo video -->
 

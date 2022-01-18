@@ -15,6 +15,8 @@ If it turns out that's not the case, I'll fix the layout later.
 
 <!-- and I'll probably switch to use my own picture if it turns out that's what everyone else does :) -->
 
+Meet members of 2022 Winter XR Capstone Team 8:
+
 ||||
 |--|--|--|
 |||**Eric Banisadr**|
