@@ -19,8 +19,6 @@ Meet members of 2022 Winter XR Capstone Team 8:
 
 ||||
 |--|--|--|
-|||**Eric Banisadr**|
-|||
 |![Kyle's photo](../images/guohaz.jpeg)||**Kyle Zhang** is a BS/MS student in Paul G. Allen School with a concentration in ML and Robotics. He is very interested in VR/AR and excited to develop for this area for the first time.|
 |||
 |![Yueqian's profile image](../images/yq.jpg)||**Yueqian Zhang** is also a BS/MS student in the Allen School😊 I am interested in Accessibility and Graphics. Outside of CS I enjoy design and drawing!
