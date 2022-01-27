@@ -77,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
         String contents = String.fromCharCodes(rawFile.bytes!);
         firestore
             .collection(room)
-            .add({'name': contents, 'ref': null})
+            .add({'name': fileName, 'content': contents})
             .then((value) => print("Text added"))
             .catchError((error) => print("Failed to add text: $error"));
       } else {
@@ -130,15 +130,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   DocumentSnapshot document = snapshot.data!.docs[index];
                   Map<String, dynamic> data =
                       document.data()! as Map<String, dynamic>;
-                  if (data['ref'] != null) {
+                  if (data.containsKey("ref")) {
                     return ListTile(
                       title: Text(data['name']),
                       subtitle: Text(data['ref']),
                     );
                   } else {
                     return ListTile(
-                      title: Text(data['name']),
-                      subtitle: const Text("Plain Text"),
+                      title: Text(data['content']),
+                      subtitle: Text(data['name'] ?? "Plain Text"),
                       trailing: ElevatedButton(
                           onPressed: () {
                             Clipboard.setData(
