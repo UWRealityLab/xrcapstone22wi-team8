@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -75,14 +73,23 @@ class _MyHomePageState extends State<MyHomePage> {
     if (result != null) {
       PlatformFile rawFile = result.files.single;
       String fileName = rawFile.name;
-      print("Uploading ${fileName}");
-      storage.ref().child(room).child(fileName).putData(rawFile.bytes!);
-      print("Add entry to database");
-      firestore
-          .collection(room)
-          .add({'name': fileName, 'ref': fileName})
-          .then((value) => print("File added"))
-          .catchError((error) => print("Failed to add file: $error"));
+      if (rawFile.extension == "txt") {
+        String contents = String.fromCharCodes(rawFile.bytes!);
+        firestore
+            .collection(room)
+            .add({'name': contents, 'ref': null})
+            .then((value) => print("Text added"))
+            .catchError((error) => print("Failed to add text: $error"));
+      } else {
+        print("Uploading $fileName");
+        storage.ref().child(room).child(fileName).putData(rawFile.bytes!);
+        print("Add entry to database");
+        firestore
+            .collection(room)
+            .add({'name': fileName, 'ref': fileName})
+            .then((value) => print("File added"))
+            .catchError((error) => print("Failed to add file: $error"));
+      }
     } else {
       // User canceled the picker
       print("No file selected");
