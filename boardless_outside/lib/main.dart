@@ -144,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       trailing: ElevatedButton(
                           onPressed: () {
                             Clipboard.setData(
-                                ClipboardData(text: data['name']));
+                                ClipboardData(text: data['content']));
                           },
                           child: const Text("Copy")),
                     );
