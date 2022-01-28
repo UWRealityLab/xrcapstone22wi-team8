@@ -28,9 +28,18 @@ jobs:
         run: hugo --minify
         working-directory: docs
 
+      - name: Setup Flutter
+        run: |
+          flutter config --enable-web
+          flutter pub get
+
+      - name: Build File Transfer for Web
+        run: flutter build web --release --base-href '/xrcapstone22wi-team8/outside/'
+        working-directory: boardless_outside
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/master'
+        # if: github.ref == 'refs/heads/master'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs/public
