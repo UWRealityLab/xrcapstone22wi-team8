@@ -33,13 +33,11 @@ jobs:
           flutter-version: '2.8.1'
           channel: 'stable'
 
-      - name: Setup Flutter for Web
+      - name: Build File Transfer Flutter Web Client
         run: |
           flutter config --enable-web
           flutter pub get
-
-      - name: Build File Transfer for Web
-        run: flutter build web --release --base-href '/xrcapstone22wi-team8/outside/'
+          flutter build web --release --base-href '/xrcapstone22wi-team8/outside/'
         working-directory: boardless_outside
 
       - name: Copy File Transfer to Deployment Folder
