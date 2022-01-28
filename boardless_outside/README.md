@@ -1,6 +1,6 @@
 # Outside Boardless 
 
-The companion file transfer client for Boardless, written in Flutter.
+The companion file transfer client for Boardless, written in Flutter. Try it out [on the web](https://uwrealitylab.github.io/xrcapstone22wi-team8/outside).
 
 ## Setup
 
