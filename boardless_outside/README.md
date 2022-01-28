@@ -8,8 +8,8 @@ The companion file transfer client for Boardless, written in Flutter. Try it out
 - Open this folder in your editor of choice (usually Visual Studio Code, IntelliJ IDEA, or Android Studio)
 - See instructions for developing and building the app for
   - [Mobile](https://flutter.dev/multi-platform/mobile)
-  - [Web](https://flutter.dev/multi-platform/web)
-  - [Desktop](https://flutter.dev/multi-platform/desktop)
+  - [Desktop](https://flutter.dev/multi-platform/desktop) (macOS only because Firebase only supports macOS)
+  - [Web](https://flutter.dev/multi-platform/web) (use this option to run on Windows or Linux)
 
 ## About Flutter
 
