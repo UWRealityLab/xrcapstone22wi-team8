@@ -42,9 +42,8 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.boardless_outside"
-        minSdkVersion flutter.minSdkVersion
+        applicationId "edu.washington.cs.realitylab.xrcapstone22wi_team8"
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

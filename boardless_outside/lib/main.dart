@@ -81,9 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
             .then((value) => print("Text added"))
             .catchError((error) => print("Failed to add text: $error"));
       } else {
-        print("Uploading $fileName");
         storage.ref().child(room).child(fileName).putData(rawFile.bytes!);
-        print("Add entry to database");
         firestore
             .collection(room)
             .add({'name': fileName, 'ref': fileName})
@@ -123,6 +121,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Text("Loading");
+            }
+
+            if (snapshot.data!.docs.isEmpty) {
+              return const Text("No documents");
             }
 
             return ListView.separated(
