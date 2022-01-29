@@ -5,7 +5,8 @@ name: GitHub Pages
 on:
   push:
     branches:
-      - master  # Set a branch to deploy
+      - master
+      - file-transfer-flutter
   pull_request:
 
 jobs:
@@ -28,9 +29,24 @@ jobs:
         run: hugo --minify
         working-directory: docs
 
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '2.8.1'
+          channel: 'stable'
+
+      - name: Build File Transfer Flutter Web Client
+        run: |
+          flutter config --enable-web
+          flutter pub get
+          flutter build web --release --base-href '/xrcapstone22wi-team8/outside/'
+        working-directory: boardless_outside
+
+      - name: Copy File Transfer to Deployment Folder
+        run: mv ./boardless_outside/build/web/ ./docs/public/outside/
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/file-transfer-flutter'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs/public
