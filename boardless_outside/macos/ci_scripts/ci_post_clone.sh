@@ -9,4 +9,4 @@ brew install --cask flutter
 # Setup Flutter Strcture
 flutter config --enable-macos-desktop
 flutter pub get
-pod install
+flutter build macos --release
