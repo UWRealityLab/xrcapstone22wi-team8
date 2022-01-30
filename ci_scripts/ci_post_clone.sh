@@ -10,5 +10,9 @@ brew install --cask flutter
 flutter config --enable-macos-desktop
 cd boardless_outside
 flutter pub get
-cd macos
-pod install
+if [ CI_PRODUCT_PLATFORM = 'macOS' ]
+then
+    flutter build macos --release
+else
+    flutter build ios --release
+fi
