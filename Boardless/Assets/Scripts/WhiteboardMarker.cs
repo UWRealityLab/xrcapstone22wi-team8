@@ -7,7 +7,7 @@ using UnityEngine;
 public class WhiteboardMarker : MonoBehaviour
 {
     [SerializeField] private Transform _tip;
-    [SerializeField] private int _penSize = 5;
+    public int _penSize = 5;
 
     private Renderer _renderer;
     private Color[] _colors;
@@ -23,7 +23,7 @@ public class WhiteboardMarker : MonoBehaviour
     {
         _renderer = _tip.GetComponent<Renderer>();
         _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
-        _tipHeight = _tip.localScale.y;
+        _tipHeight = _tip.localScale.y * 2 /3;
     }
 
     void Update()
@@ -60,13 +60,13 @@ public class WhiteboardMarker : MonoBehaviour
                         _whiteboard.texture.SetPixels(lerpX, lerpY, _penSize, _penSize, _colors);
                     }
 
-                    transform.rotation = _lastTouchRot;
+          //          transform.rotation = _lastTouchRot;
                     
                     _whiteboard.texture.Apply();
                 }
 
                 _lastTouchPos = new Vector2(x, y);
-                _lastTouchRot = transform.rotation;
+            //    _lastTouchRot = transform.rotation;
                 _touchedLastFrame = true;
                 return;
             }
@@ -74,5 +74,10 @@ public class WhiteboardMarker : MonoBehaviour
 
         _whiteboard = null;
         _touchedLastFrame = false;
+    }
+
+    public void updatePensize(float pensize) {
+        _penSize = (int)pensize;
+        _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
     }
 }

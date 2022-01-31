@@ -12,5 +12,14 @@ public class Whiteboard : MonoBehaviour
         var r = GetComponent<Renderer>();
         texture = new Texture2D((int)textureSize.x, (int)textureSize.y);
         r.material.mainTexture = texture;
+        Color fillColor = Color.white;
+        var fillColorArray =  texture.GetPixels();
+        
+        for(var i = 0; i < fillColorArray.Length; ++i)
+        {
+            fillColorArray[i] = fillColor;
+        }
+        texture.SetPixels( fillColorArray );
+        texture.Apply();
     }
 }
