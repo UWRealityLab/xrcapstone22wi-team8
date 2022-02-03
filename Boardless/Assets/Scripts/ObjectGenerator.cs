@@ -5,15 +5,15 @@ using UnityEngine;
 public class ObjectGenerator : MonoBehaviour
 {
     // The object to generate.
-    public GameObject obj;
+    public GameObject Obj;
 
     // The position of the generated object.
-    public Vector3 pos; 
+    public Vector3 Pos; 
 
     // Generates the preset game object at the given position.
-    public void generate()
+    public void Generate()
     {
-        GameObject newObj = Instantiate(obj);
-        newObj.transform.position = pos;
+        GameObject newObj = Instantiate(Obj);
+        newObj.transform.position = Pos;
     }
 }
