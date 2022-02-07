@@ -22,8 +22,8 @@ Team members work on their milestone towards the MVP next week.
 
 ## Review Requests
 
-- Nothing for now.
+- [#14](https://github.com/UWRealityLab/xrcapstone22wi-team8/pull/14)
 
 ## Blocking Issues
 
-- No blocker for now. All issues have possible solutions to try.
+No blocker for now. Integration with Firebase is taking a little longer than expected but has possible solutions to try.
