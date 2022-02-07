@@ -75,4 +75,8 @@ public class Eraser : MonoBehaviour
         _whiteboard = null;
         _touchedLastFrame = false;
     }
+    public void updatePensize(float pensize) {
+        _penSize = (int)pensize;
+        _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
+    }
 }
