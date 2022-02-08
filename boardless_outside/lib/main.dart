@@ -67,6 +67,33 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   static const String room = "test";
+  // https://developer.apple.com/library/archive/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html
+  static const Set<String> plainTextExtensions = {
+    // common text files
+    "txt", "md", "markdown",
+    // Programming language files
+    // Powering Boardless
+    "cs", "dart", "java", "gradle",
+    // Apple fans
+    "swift", "m", "mm", "applescript", "scpt", "podspec",
+    // programming language class
+    "sml", "ml", "rkt", "rs",
+    // C and system programming
+    "c", "cpp", "cp", "c++", "cc", "cxx", "h", "hpp", "h++", "hxx", "s", "sv",
+    // Web
+    "html", "css", "js", "javascript", "ts", "tsx", "sql", "php", "go",
+    // Scripting
+    "sh", "pl", "pm", "py", "rb", "bat", "el",
+    // DO NOT INCLUDE resource files as plain text
+    // they can have better representation (e.g. folding list, table, etc.)
+    // "xml", "json", "jsonp", "yaml", "yml", // config files
+    // "tsv", "csv", // other tabular format
+  };
+  static const Set<String> plainTextNames = {
+    // Common Programming-related plain text files
+    ".gitignore", ".gitattributes", "README", "LICENSE",
+    "gradle.properties", "Makefile", "Dockerfile", "Podfile",
+  };
 
   final Stream<QuerySnapshot> _usersStream =
       FirebaseFirestore.instance.collection(room).snapshots();
@@ -77,7 +104,8 @@ class _MyHomePageState extends State<MyHomePage> {
     if (result != null) {
       PlatformFile rawFile = result.files.single;
       String fileName = rawFile.name;
-      if (rawFile.extension == "txt") {
+      if (plainTextExtensions.contains(rawFile.extension?.toLowerCase())
+          || plainTextNames.contains(fileName)) {
         String contents = String.fromCharCodes(rawFile.bytes!);
         firestore
             .collection(room)
