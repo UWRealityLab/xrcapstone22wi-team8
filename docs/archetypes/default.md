@@ -1,7 +1,6 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
-draft: true
 # The following are extra (optional) metadata for ananke
 # tags: ["tag1", "tag2"]
 # featured_image: ""
