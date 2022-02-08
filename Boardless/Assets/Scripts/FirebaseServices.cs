@@ -81,7 +81,7 @@ public class FirebaseServices : MonoBehaviour
         }
     }
 
-    void AddText(string content, string name = null)
+    public void AddText(string content, string name = null)
     {
         _db.Collection(Room).AddAsync(new Dictionary<string, object>
         {
@@ -96,7 +96,7 @@ public class FirebaseServices : MonoBehaviour
     /// </summary>
     /// <param name="fileRef">Value for `ref` stored in database entry.</param>
     /// <returns>The storage reference for downloading the file.</returns>
-    StorageReference RefForDownload(string fileRef)
+    public StorageReference RefForDownload(string fileRef)
     {
         return _storage.GetReference($"{Room}/{fileRef}");
     }
