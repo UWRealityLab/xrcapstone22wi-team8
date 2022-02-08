@@ -104,7 +104,7 @@ public class FirebaseServices : MonoBehaviour
     public static string GetDisplayName(DocumentSnapshot document)
     {
         string text;
-        if (!document.TryGetValue("name", out text))
+        if (!document.TryGetValue("name", out text) || string.IsNullOrEmpty(text))
         {
             text = document.GetValue<string>("content");
         }
