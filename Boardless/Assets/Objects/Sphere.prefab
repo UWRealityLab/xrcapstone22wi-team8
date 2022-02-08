@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 500954674660787181}
   - component: {fileID: 6372922531303854436}
   - component: {fileID: 1860558854439799199}
+  - component: {fileID: 4114490646418009403}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -250,3 +251,19 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
+--- !u!54 &4114490646418009403
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7551776869248861017}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
