@@ -100,13 +100,13 @@ public class FirebaseFilesDropdown : MonoBehaviour
             InstantiateTextDisplay(file.ContentOrNull);
         }
         // Reset dropdown
-        dropdown.SetValueWithoutNotify(0);
+        dropdown.value = 0;
     }
 
     private void InstantiateTextDisplay(string text)
     {
         GameObject textContainer = Instantiate(TextContainerPrefab, SpawnLocation, Quaternion.identity);
-        textContainer.GetComponent<TextMesh>().text = text;
+        textContainer.GetComponentInChildren<TextMesh>().text = text;
     }
 
     private void InstantiateFile(File file)
