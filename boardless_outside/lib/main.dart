@@ -1,3 +1,4 @@
+import 'package:boardless_outside/SwipeToDeleteBackground.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -67,6 +68,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   static const String room = "test";
+
   // https://developer.apple.com/library/archive/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html
   static const Set<String> plainTextExtensions = {
     // common text files
@@ -104,8 +106,8 @@ class _MyHomePageState extends State<MyHomePage> {
     if (result != null) {
       PlatformFile rawFile = result.files.single;
       String fileName = rawFile.name;
-      if (plainTextExtensions.contains(rawFile.extension?.toLowerCase())
-          || plainTextNames.contains(fileName)) {
+      if (plainTextExtensions.contains(rawFile.extension?.toLowerCase()) ||
+          plainTextNames.contains(fileName)) {
         String contents = String.fromCharCodes(rawFile.bytes!);
         firestore
             .collection(room)
@@ -165,21 +167,34 @@ class _MyHomePageState extends State<MyHomePage> {
                   Map<String, dynamic> data =
                       document.data()! as Map<String, dynamic>;
                   if (data.containsKey("ref")) {
-                    return ListTile(
-                      title: Text(data['name']),
-                      subtitle: Text(data['ref']),
-                    );
+                    return Dismissible(
+                        key: Key(document.id),
+                        onDismissed: (direction) {
+                          firestore.collection(room).doc(document.id).delete();
+                          storage.ref().child(room).child(data['ref']).delete();
+                        },
+                        background: const SwipeToDeleteBackground(),
+                        child: ListTile(
+                          title: Text(data['name']),
+                          subtitle: Text(data['ref']),
+                        ));
                   } else {
-                    return ListTile(
-                      title: Text(data['content']),
-                      subtitle: Text(data['name'] ?? "Plain Text"),
-                      trailing: ElevatedButton(
-                          onPressed: () {
-                            Clipboard.setData(
-                                ClipboardData(text: data['content']));
-                          },
-                          child: const Text("Copy")),
-                    );
+                    return Dismissible(
+                        key: Key(document.id),
+                        onDismissed: (direction) {
+                          firestore.collection(room).doc(document.id).delete();
+                        },
+                        background: const SwipeToDeleteBackground(),
+                        child: ListTile(
+                          title: Text(data['content']),
+                          subtitle: Text(data['name'] ?? "Plain Text"),
+                          trailing: ElevatedButton(
+                              onPressed: () {
+                                Clipboard.setData(
+                                    ClipboardData(text: data['content']));
+                              },
+                              child: const Text("Copy")),
+                        ));
                   }
                 },
                 separatorBuilder: (context, index) => const Divider(),
