@@ -38,6 +38,10 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.deepPurple,
       ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.deepPurple,
+      ),
       home: const MyHomePage(title: 'Boardless Files (room: test)'),
     );
   }
