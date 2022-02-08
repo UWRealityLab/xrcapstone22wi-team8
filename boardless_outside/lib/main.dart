@@ -109,22 +109,11 @@ class _MyHomePageState extends State<MyHomePage> {
       if (plainTextExtensions.contains(rawFile.extension?.toLowerCase()) ||
           plainTextNames.contains(fileName)) {
         String contents = String.fromCharCodes(rawFile.bytes!);
-        firestore
-            .collection(room)
-            .add({'name': fileName, 'content': contents})
-            .then((value) => print("Text added"))
-            .catchError((error) => print("Failed to add text: $error"));
+        firestore.collection(room).add({'name': fileName, 'content': contents});
       } else {
         storage.ref().child(room).child(fileName).putData(rawFile.bytes!);
-        firestore
-            .collection(room)
-            .add({'name': fileName, 'ref': fileName})
-            .then((value) => print("File added"))
-            .catchError((error) => print("Failed to add file: $error"));
+        firestore.collection(room).add({'name': fileName, 'ref': fileName});
       }
-    } else {
-      // User canceled the picker
-      print("No file selected");
     }
   }
 
