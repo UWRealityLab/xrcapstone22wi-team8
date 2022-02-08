@@ -3,15 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Whiteboard
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - pen
   - Water
   - UI
-  - 
+  - wb
   - 
   - 
   - 
@@ -40,4 +41,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: New Layer
+    uniqueID: 1330661387
     locked: 0
