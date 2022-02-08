@@ -98,10 +98,11 @@ class _MyHomePageState extends State<MyHomePage> {
   };
 
   final Stream<QuerySnapshot> _usersStream =
-      FirebaseFirestore.instance.collection(room).snapshots();
+      firestore.collection(room).snapshots();
 
   void _selectFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    FilePickerResult? result =
+        await FilePicker.platform.pickFiles(withData: true);
 
     if (result != null) {
       PlatformFile rawFile = result.files.single;
