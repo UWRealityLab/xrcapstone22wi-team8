@@ -63,6 +63,9 @@ public class Lobby : MonoBehaviourPunCallbacks
         progressLabel.SetActive(true);
         controlPanel.SetActive(false);
 
+        // TODO: figure out how to enter this properly (OSK)
+        PhotonNetwork.NickName = "TestUser";
+
         // check if we are connected or not, we join if we are, else we initiate the connection to the server.
         if (PhotonNetwork.IsConnected)
         {
@@ -97,6 +100,14 @@ public class Lobby : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Room joined");
+
+        // #Critical: We only load if we are the first player, else we rely on `PhotonNetwork.AutomaticallySyncScene` to sync our instance scene.
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
+        {
+            Debug.Log("We load the 'Room for 1' ");
+
+            PhotonNetwork.LoadLevel("SampleScene"); // TODO: Factor magic constant out somewhere
+        }
     }
 
     public override void OnDisconnected(DisconnectCause cause)
