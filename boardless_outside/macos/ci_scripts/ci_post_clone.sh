@@ -10,3 +10,6 @@ brew install --cask flutter
 flutter config --enable-macos-desktop
 flutter pub get
 pod install
+# https://github.com/flutter/flutter/blob/master/packages/flutter_tools/bin/macos_assemble.sh
+touch Flutter/ephemeral/FlutterInputs.xcfilelist
+touch Flutter/ephemeral/FlutterOutputs.xcfilelist
