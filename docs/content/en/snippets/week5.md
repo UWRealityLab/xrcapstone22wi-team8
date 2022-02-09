@@ -40,4 +40,5 @@ We released our [MVP](https://github.com/UWRealityLab/xrcapstone22wi-team8/relea
 
 ## Blocking Issues
 
+- We are unsure why our Whiteboard script doesn't work with anything other than a plane.
 - <# TODO #>
