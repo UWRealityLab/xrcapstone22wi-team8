@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 1742376301019170518}
   - component: {fileID: 1742376301019170513}
   - component: {fileID: 1742376301019170512}
-  - component: {fileID: 1742376301019170515}
+  - component: {fileID: 6044682030141855274}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -365,9 +365,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1742376301019170515}
-        m_TargetAssemblyTypeName: ObjectGenerator, Assembly-CSharp
-        m_MethodName: generate
+      - m_Target: {fileID: 6044682030141855274}
+        m_TargetAssemblyTypeName: NetworkedObjectGenerator, Assembly-CSharp
+        m_MethodName: Generate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -377,7 +377,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1742376301019170515
+--- !u!114 &6044682030141855274
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -386,11 +386,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1742376301019170525}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b554d7df6d1ec45bea56252ac1bb8821, type: 3}
+  m_Script: {fileID: 11500000, guid: 66ff61d4af2c348309ce77be4bcd38dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 4768512421445892431, guid: 5ecce370e3be04254a94bcd0f979b181, type: 3}
-  pos: {x: 0, y: 2, z: 0}
+  Obj: {fileID: 4837731105953406880, guid: 17f93a7bda5454c149ddeb29e16a9ce7, type: 3}
+  Pos: {x: 0, y: 2, z: 0}
 --- !u!1 &1742376301068817764
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,7 +526,7 @@ GameObject:
   - component: {fileID: 1742376301225014033}
   - component: {fileID: 1742376301225014032}
   - component: {fileID: 1742376301225014035}
-  - component: {fileID: 1742376301225014034}
+  - component: {fileID: 540813845164274667}
   m_Layer: 0
   m_Name: Cube Button
   m_TagString: Untagged
@@ -636,9 +636,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1742376301225014034}
-        m_TargetAssemblyTypeName: ObjectGenerator, Assembly-CSharp
-        m_MethodName: generate
+      - m_Target: {fileID: 540813845164274667}
+        m_TargetAssemblyTypeName: NetworkedObjectGenerator, Assembly-CSharp
+        m_MethodName: Generate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -648,7 +648,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1742376301225014034
+--- !u!114 &540813845164274667
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -657,11 +657,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1742376301225014044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b554d7df6d1ec45bea56252ac1bb8821, type: 3}
+  m_Script: {fileID: 11500000, guid: 66ff61d4af2c348309ce77be4bcd38dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 4107760842090506603, guid: 7f9fc9447c5ec41a5995a34e3bfa9e17, type: 3}
-  pos: {x: 0, y: 2, z: 0}
+  Obj: {fileID: 1047845814200174153, guid: fd2c71420633c4da290dd17373be9a06, type: 3}
+  Pos: {x: 0, y: 2, z: 0}
 --- !u!1 &1742376301943136254
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +674,7 @@ GameObject:
   - component: {fileID: 1742376301943136243}
   - component: {fileID: 1742376301943136242}
   - component: {fileID: 1742376301943136253}
-  - component: {fileID: 1742376301943136252}
+  - component: {fileID: 3900665957707971648}
   m_Layer: 0
   m_Name: Sphere Button
   m_TagString: Untagged
@@ -784,9 +784,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1742376301943136252}
-        m_TargetAssemblyTypeName: ObjectGenerator, Assembly-CSharp
-        m_MethodName: generate
+      - m_Target: {fileID: 3900665957707971648}
+        m_TargetAssemblyTypeName: NetworkedObjectGenerator, Assembly-CSharp
+        m_MethodName: Generate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -796,7 +796,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1742376301943136252
+--- !u!114 &3900665957707971648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -805,11 +805,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1742376301943136254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b554d7df6d1ec45bea56252ac1bb8821, type: 3}
+  m_Script: {fileID: 11500000, guid: 66ff61d4af2c348309ce77be4bcd38dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 7551776869248861017, guid: 76212c0fded994eb8a95208eae559210, type: 3}
-  pos: {x: 0, y: 2, z: 0}
+  Obj: {fileID: 94011769253770310, guid: da72876ac00e6467fbadea2aff8281cf, type: 3}
+  Pos: {x: 0, y: 2, z: 0}
 --- !u!1 &1742376302143512158
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,7 +903,7 @@ GameObject:
   - component: {fileID: 1742376302343551706}
   - component: {fileID: 1742376302343551525}
   - component: {fileID: 1742376302343551524}
-  - component: {fileID: 1742376302343551527}
+  - component: {fileID: 7602103788326024610}
   m_Layer: 0
   m_Name: Quad (Whiteboard)
   m_TagString: Untagged
@@ -1013,9 +1013,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1742376302343551527}
-        m_TargetAssemblyTypeName: ObjectGenerator, Assembly-CSharp
-        m_MethodName: generate
+      - m_Target: {fileID: 7602103788326024610}
+        m_TargetAssemblyTypeName: NetworkedObjectGenerator, Assembly-CSharp
+        m_MethodName: Generate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1025,7 +1025,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1742376302343551527
+--- !u!114 &7602103788326024610
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1034,8 +1034,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1742376302343551521}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b554d7df6d1ec45bea56252ac1bb8821, type: 3}
+  m_Script: {fileID: 11500000, guid: 66ff61d4af2c348309ce77be4bcd38dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 7905366643823816260, guid: 40ddc309011a64e69832c234a08e2ea7, type: 3}
-  pos: {x: 0, y: 2, z: 0}
+  Obj: {fileID: 4786960236210486329, guid: e0552d9dd02db42218cedc4c463d8a88, type: 3}
+  Pos: {x: 0, y: 2, z: 0}
