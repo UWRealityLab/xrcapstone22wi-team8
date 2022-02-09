@@ -9,7 +9,7 @@ author: "Apollo Zhu"
 description: "YOU DA REAL MVP"
 ---
 
-We released our [MVP](https://github.com/UWRealityLab/xrcapstone22wi-team8/releases/tag/mvp-rc.1) on Tuesday and continued working towards the target goal according to plan.
+We released our [MVP](https://github.com/UWRealityLab/xrcapstone22wi-team8/releases/tag/mvp-rc.2) on Tuesday and continued working towards the target goal according to plan.
 
 <!--more-->
 
@@ -23,14 +23,20 @@ We released our [MVP](https://github.com/UWRealityLab/xrcapstone22wi-team8/relea
   ![Transferred text content overlays behind a whiteboard with the word Yes written on it](../../images/week5/draw-on-file.png)
 - Move and scale primitive 3D objects or plain text contents with the right and the left controller
   <iframe width="589" height="338" src="https://www.youtube-nocookie.com/embed/yyZRPcLZ9qE" title="Boardless - 2D Brush & 3D Shape Generation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+- Multiple participants can join the same room and manipulate the 3D objects together
+  <iframe width="589" height="589" src="https://www.youtube-nocookie.com/embed/1c-GHKjepkY" title="Boardless - Multi-user Object Move & Scale" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 - Dark mode, deletion, and loading animation support in file transfer client
 
 ## Review Requests
 
-- [#17](https://github.com/UWRealityLab/xrcapstone22wi-team8/pull/17): Firebase integration
+- [#17](https://github.com/UWRealityLab/xrcapstone22wi-team8/pull/17): Firebase setup in Unity
 - [#18](https://github.com/UWRealityLab/xrcapstone22wi-team8/pull/18): 3D object move and scale
-- [#20](https://github.com/UWRealityLab/xrcapstone22wi-team8/pull/20): transferred file selection + plain text display
 - [#21](https://github.com/UWRealityLab/xrcapstone22wi-team8/pull/21): file transfer client improvements
+- [#26](https://github.com/UWRealityLab/xrcapstone22wi-team8/pull/26): mvp integration, which includes
+  - combining object generation dashboard with drawing options dashboard
+  - fixing 3D primitives floating away/having wrong rotation
+  - [#20](https://github.com/UWRealityLab/xrcapstone22wi-team8/pull/20): transferred file selection + plain text display
+  - [#25](https://github.com/UWRealityLab/xrcapstone22wi-team8/pull/25): basic multi-user support
 
 ## Blocking Issues
 
