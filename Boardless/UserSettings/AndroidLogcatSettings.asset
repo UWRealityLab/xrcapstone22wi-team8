@@ -2,22 +2,76 @@
     "m_SelectedDeviceId": "1WMHHB6B9P1484",
     "m_SelectedPackage": {
         "deviceId": "1WMHHB6B9P1484",
-        "name": "com.UWRealityLab.Boardless",
-        "processId": 17114,
+        "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+        "processId": 9931,
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
         {
             "deviceId": "1WMHHB6B9P1484",
-            "name": "com.UWRealityLab.Boardless",
-            "processId": 16647,
-            "exited": false
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 6111,
+            "exited": true
         },
         {
             "deviceId": "1WMHHB6B9P1484",
-            "name": "com.UWRealityLab.Boardless",
-            "processId": 17114,
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 7024,
+            "exited": true
+        },
+        {
+            "deviceId": "1WMHHB6B9P1484",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 7954,
+            "exited": true
+        },
+        {
+            "deviceId": "1WMHHB6B9P1484",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 8492,
+            "exited": true
+        },
+        {
+            "deviceId": "1WMHHB6B9P1484",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 9089,
+            "exited": true
+        },
+        {
+            "deviceId": "1WMHHB6B9P1484",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 9931,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH8330P1164",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 8010,
+            "exited": true
+        },
+        {
+            "deviceId": "1WMHH8330P1164",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 8752,
+            "exited": true
+        },
+        {
+            "deviceId": "1WMHH8330P1164",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 9140,
+            "exited": true
+        },
+        {
+            "deviceId": "1WMHH8330P1164",
+            "name": "com.oculus.os.clearactivity",
+            "processId": 5415,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH8330P1164",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 9841,
             "exited": false
         }
     ],
