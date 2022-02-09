@@ -3,10 +3,10 @@ title: "Week 5 Snippet"
 date: 2022-02-11T07:00:00-08:00
 # The following are extra (optional) metadata for ananke
 # tags: ["tag1", "tag2"]
-# https://unsplash.com/photos/mjl0yIdSi18, Photo by Shubham Dhage on Unsplash
-featured_image: "https://images.unsplash.com/photo-1626544827763-d516dce335e2"
+# https://giphy.com/gifs/GVMhZwYv8U5NK, Kevin Durant MVP GIF By NBA
+featured_image: "https://media3.giphy.com/media/GVMhZwYv8U5NK/giphy.gif"
 author: "Apollo Zhu"
-description: "MVP!"
+description: "YOU DA REAL MVP"
 ---
 
 We released our [MVP](https://github.com/UWRealityLab/xrcapstone22wi-team8/releases/tag/mvp-rc.1) on Tuesday and continued working towards the target goal according to plan.
