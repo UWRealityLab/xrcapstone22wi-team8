@@ -360,7 +360,7 @@ PODS:
   - firebase_core (1.12.0):
     - Firebase/CoreOnly (~> 8.11.0)
     - FlutterMacOS
-  - firebase_storage (10.2.6):
+  - firebase_storage (10.2.7):
     - Firebase/CoreOnly (~> 8.11.0)
     - Firebase/Storage (~> 8.11.0)
     - firebase_core
@@ -472,7 +472,7 @@ SPEC CHECKSUMS:
   cloud_firestore: 4ea34c77aa868273ec7726b56412f0f97103485a
   Firebase: 44dd9724c84df18b486639e874f31436eaa9a20c
   firebase_core: 76a7538b389ae1231102dbbdd4f3772eec9abbf8
-  firebase_storage: 39f726ed084ef102660008e7ed66960ea3c1966f
+  firebase_storage: 4f16b268dc297f9096b29209a0a1191ebf07d4ba
   FirebaseCore: 2f4f85b453cc8fea4bb2b37e370007d2bcafe3f0
   FirebaseCoreDiagnostics: 64d9709d804a6c25bd77841371c1fcfd909d5601
   FirebaseFirestore: 3b2e4b532c68809b3df5f8d39d28b3398ffc196b
