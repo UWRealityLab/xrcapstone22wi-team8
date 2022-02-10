@@ -9,7 +9,7 @@ author: "Apollo Zhu"
 description: "YOU DA REAL MVP"
 ---
 
-We released our [MVP](https://github.com/UWRealityLab/xrcapstone22wi-team8/releases/tag/mvp-rc.2) on Tuesday and continued working towards the target goal according to plan.
+We released our [MVP](https://github.com/UWRealityLab/xrcapstone22wi-team8/releases/tag/mvp-rc.2) on Tuesday, received feedbacks on Thursday through in-class testing, and continued working towards the target goal according to plan.
 
 <!--more-->
 
@@ -40,5 +40,6 @@ We released our [MVP](https://github.com/UWRealityLab/xrcapstone22wi-team8/relea
 
 ## Blocking Issues
 
-- We are unsure why our Whiteboard script doesn't work with anything other than a plane.
+- We are unsure why our Whiteboard script doesn't work with anything other than a plane (e.g. a quad).
+- Multi-user is taking longer to implement and we'll have to push back on some stretch goals listed in the PRD.
 - <# TODO #>
