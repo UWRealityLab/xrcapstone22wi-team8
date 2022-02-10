@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.boardless_outside">
    <application
-        android:label="boardless_outside"
+        android:label="Outside Boardless"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
