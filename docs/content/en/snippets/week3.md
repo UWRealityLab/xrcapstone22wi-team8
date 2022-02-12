@@ -17,7 +17,7 @@ We have got individual functions work this week!
 
 ## New Features/Functionalities
 
-- brush prototype that can draw on a board.
+- Brush prototype that can draw on a board.
 - 3D generation from buttons works!
 - File transfer is on its way.
 
@@ -31,4 +31,4 @@ There are no blocking issues this week and we don't need other assistance.
 
 ## What's Next
 
-Next week, we'll refine our individual functions and pull everything together and hopefully and the "multiuser".
+Next week, we'll refine our individual functions and pull everything together, and hopefully the "multiuser".
