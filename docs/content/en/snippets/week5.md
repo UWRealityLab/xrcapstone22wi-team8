@@ -42,4 +42,3 @@ We released our [MVP](https://github.com/UWRealityLab/xrcapstone22wi-team8/relea
 
 - We are unsure why our Whiteboard script doesn't work with anything other than a plane (e.g. a quad).
 - Multi-user is taking longer to implement and we'll have to push back on some stretch goals listed in the PRD.
-- <# TODO #>
