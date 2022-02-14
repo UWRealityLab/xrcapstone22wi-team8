@@ -1,6 +1,6 @@
 ---
 title: "Week 3 Snippet"
-date: 2022-02-11T23:42:55-08:00
+date: 2022-01-28T23:42:55-08:00
 # The following are extra (optional) metadata for ananke
 # tags: ["tag1", "tag2"]
 # https://unsplash.com/photos/ETRPjvb0KM0, Photo by Patrick Perkins on Unsplash
