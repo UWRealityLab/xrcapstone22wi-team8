@@ -23,7 +23,9 @@ We have got individual functions work this week!
 
 ## Review Requests
 
-There's nothing needing review this week.
+- [#8](https://github.com/UWRealityLab/xrcapstone22wi-team8/pull/8): Generate 3d primitives using Buttons
+- [#11](https://github.com/UWRealityLab/xrcapstone22wi-team8/pull/11): File Transfer Client in Flutter
+
 
 ## Blocking Issues
 
