@@ -23,7 +23,7 @@
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Outside Boardless">
+  <meta name="apple-mobile-web-app-title" content="boardless_outside">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
@@ -31,15 +31,13 @@
 
   <title>Outside Boardless</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="loader.css">
 </head>
 <body>
-  <div class="lds-roller center"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
   <script>
-    var serviceWorkerVersion = '2167251214';
+    var serviceWorkerVersion = '3127033206';
     var scriptLoaded = false;
     function loadMainDartJs() {
       if (scriptLoaded) {
@@ -49,7 +47,6 @@
       var scriptTag = document.createElement('script');
       scriptTag.src = 'main.dart.js';
       scriptTag.type = 'application/javascript';
-      scriptTag.defer = true;
       document.body.append(scriptTag);
     }
 
