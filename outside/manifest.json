@@ -1,11 +1,11 @@
 {
-    "name": "boardless_outside",
-    "short_name": "boardless_outside",
+    "name": "Outside Boardless",
+    "short_name": "Outside Boardless",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#673AB7",
+    "theme_color": "#673AB7",
+    "description": "File transfer client for Boardless.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
