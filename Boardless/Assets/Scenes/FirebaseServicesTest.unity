@@ -1607,4 +1607,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Firebase: {fileID: 443720832}
   SpawnLocation: {x: 0, y: 2, z: 0}
-  TextContainerPrefab: {fileID: 6915144195276213187, guid: a07f621bd631b4868b7d9a82ef0fd25b, type: 3}
+  TextContainerPrefab: {fileID: 0}
