@@ -5,6 +5,7 @@ using System.IO;
 using Firebase.Firestore;
 using Firebase.Storage;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -111,31 +112,43 @@ public class FirebaseFilesDropdown : MonoBehaviour
         }
     }
 
+    private string LocalURIForFile(FirebaseFile file)
+    {
+        string path = LocalPathForFile(file);
+        if (path == null)
+        {
+            return null;
+        }
+        else
+        {
+            return new Uri(path).AbsoluteUri;
+        }
+    }
+
     private void DownloadIfFileRef(FirebaseFile file, bool downloadIfExists)
     {
-
-        string fullName = LocalPathForFile(file);
-        if (fullName == null)
+        string path = LocalPathForFile(file);
+        if (path == null)
         {
             return;
         }
-        if (File.Exists(fullName) && !downloadIfExists)
+        if (File.Exists(path) && !downloadIfExists)
         {
-            Debug.Log($"File exists at {fullName} and no download required.");
+            Debug.Log($"File exists at {path} and no download required.");
             return;
         }
         Firebase.RefForDownload(file.RefOrNull)
             // Firebase expects starting with file://
-            .GetFileAsync(new Uri(fullName).AbsoluteUri)
+            .GetFileAsync(LocalURIForFile(file))
             .ContinueWith(task =>
             {
                 if (!task.IsFaulted && !task.IsCanceled)
                 {
-                    Debug.Log($"File download OK: {fullName}.");
+                    Debug.Log($"File download OK: {path}.");
                 }
                 else
                 {
-                    Debug.Log($"File download NO: {fullName}.");
+                    Debug.Log($"File download NO: {path}.");
                 }
             });
     }
@@ -166,7 +179,10 @@ public class FirebaseFilesDropdown : MonoBehaviour
     {
         if (TextContainerPrefab == null)
         {
-            Debug.LogError("FirebaseFileDropdown No TextContainerPrefab");
+            if (!Application.isEditor)
+            {
+                Debug.LogError("FirebaseFileDropdown No TextContainerPrefab");
+            }
             Debug.Log(text);
             return;
         }
@@ -194,6 +210,11 @@ public class FirebaseFilesDropdown : MonoBehaviour
         Debug.Log($"Trying to display {file.Name} at {path} with extension {extension}");
         switch (extension)
         {
+            case ".jpeg":
+            case ".jpg":
+            case ".png":
+                StartCoroutine(LoadImage(file, extension));
+                return;
             case ".obj":
                 GameObject newObject = new Dummiesman.OBJLoader().Load(path);
                 if (newObject == null) break;
@@ -246,6 +267,11 @@ public class FirebaseFilesDropdown : MonoBehaviour
 
     private void AddXRInteractions(GameObject newObject)
     {
+        if (Application.isEditor)
+        {
+            Debug.Log("No XR interaction in Unity Editor");
+            return;
+        }
         MoveWithController moveWithController = newObject.AddComponent<MoveWithController>();
         moveWithController.InputScale = 0.3f;
         ChangeScale changeScale = newObject.AddComponent<ChangeScale>();
@@ -265,5 +291,53 @@ public class FirebaseFilesDropdown : MonoBehaviour
         });
 
         // FIXME: implement sync over Photon
+    }
+
+    private IEnumerator LoadImage(FirebaseFile file, string extension)
+    {
+        // Note: Only JPG and PNG formats are supported.
+        // https://docs.unity3d.com/ScriptReference/Networking.UnityWebRequestTexture.GetTexture.html
+        using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(LocalURIForFile(file)))
+        {
+            yield return uwr.SendWebRequest();
+
+            if (uwr.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError(uwr.error);
+                InstantiateTextDisplay($"Can't display {file.Name}");
+            }
+            else
+            {
+                GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
+                quad.transform.position = SpawnLocation;
+
+                MeshRenderer mr = quad.GetComponent<MeshRenderer>();
+                if (extension == ".png")
+                {
+                    // it could be transparent, so allow it
+                    mr.material = new Material(Shader.Find("Unlit/Transparent Cutout"));
+                }
+
+                Texture2D tex = DownloadHandlerTexture.GetContent(uwr);
+
+                // https://answers.unity.com/questions/1280514/how-to-make-gameobject-match-the-source-textures-s.html
+                mr.material.mainTexture = tex;
+                float x, y;
+                if (tex.height < tex.width)
+                {
+                    y = 0.5f;
+                    x = y / tex.height * tex.width;
+                }
+                else
+                {
+                    x = 0.5f;
+                    y = x / tex.width * tex.height;
+                }
+                quad.transform.localScale = new Vector3(x, y, 1);
+                Debug.Log($"({x}, {y}) for {tex.width}, {tex.height}");
+
+                AddXRInteractions(quad);
+            }
+        }
     }
 }
