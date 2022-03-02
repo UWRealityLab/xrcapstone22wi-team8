@@ -18,13 +18,15 @@ public class ChangeScale : MonoBehaviour
     // Rate for scaling down the input value from controller, in case too aggressive.
     public float InputScale;
 
+    // Instruction about how to change the scale.
+    public string Instruction = "Use joystick to change scale. Press X to change the dimension\nCurr dim: ";
+
     private bool _enable = false;
     private InputDevice _leftController;
     private ScaleMode _mode;
     private GameObject _scaleInstruction;
 
-    private string _instruction = "Use joystick to change scale. Press X to change the dimension\nCurr dim: ";
-
+    
     // Get the left controller as Input device.
     void Awake()
     {
@@ -41,7 +43,7 @@ public class ChangeScale : MonoBehaviour
     {
         _enable = true;
         _mode = ScaleMode.Overall;
-        _scaleInstruction.GetComponent<UnityEngine.UI.Text>().text = _instruction + Enum.GetName(typeof(ScaleMode), _mode);
+        _scaleInstruction.GetComponent<UnityEngine.UI.Text>().text = Instruction + Enum.GetName(typeof(ScaleMode), _mode);
 
     }
 
@@ -59,7 +61,7 @@ public class ChangeScale : MonoBehaviour
             if (_leftController.TryGetFeatureValue(CommonUsages.primaryButton, out bool inputBool) && inputBool)
             {
                 _mode = _mode == ScaleMode.Overall ? ScaleMode.X : _mode + 1;
-                _scaleInstruction.GetComponent<UnityEngine.UI.Text>().text = _instruction + Enum.GetName(typeof(ScaleMode), _mode);
+                _scaleInstruction.GetComponent<UnityEngine.UI.Text>().text = Instruction + Enum.GetName(typeof(ScaleMode), _mode);
             }
 
             Vector3 diff = Vector3.zero;

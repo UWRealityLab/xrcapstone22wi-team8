@@ -8,10 +8,8 @@ public class MoveWithController : MonoBehaviour
     // Rate for scaling down the input value from controller, in case too aggressive.
     public float InputScale;
 
+    // Instruction about how to move the object
     public string Instruction = "Move with right controller. Use joystick to change distance";
-
-    // The rotation of this object.
-    private Quaternion _obj2world;
 
     // The controller game object to query position and rotation.
     private GameObject _rightControllerGameObj;
@@ -22,7 +20,6 @@ public class MoveWithController : MonoBehaviour
     private bool _moving = false;
     private GameObject _moveInstruction;
     private InputDevice _rightController;
-    private Quaternion _world2controller;
 
 
     // Sets up the controller GameObject and InputDevice and gets the Rigidbody.
@@ -43,8 +40,6 @@ public class MoveWithController : MonoBehaviour
         _moving = true;
         _moveInstruction.GetComponent<UnityEngine.UI.Text>().text = Instruction;
         _dist = (_rightControllerGameObj.transform.position - transform.position).magnitude;
-        _world2controller = Quaternion.Inverse(_rightControllerGameObj.transform.rotation);
-        _obj2world = transform.rotation;
     }
 
     // Disable moving. Called when object exits selected.
@@ -52,7 +47,6 @@ public class MoveWithController : MonoBehaviour
     {
         _moving = false;
         _moveInstruction.GetComponent<UnityEngine.UI.Text>().text = "";
-        _obj2world = transform.rotation;
     }
 
     // While moving is enabled, the object follows the right controller and the distance from the controller to the object
@@ -65,10 +59,6 @@ public class MoveWithController : MonoBehaviour
                 _dist += inputValue[1] * InputScale;
             }
             transform.position = _rightControllerGameObj.transform.position + _rightControllerGameObj.transform.TransformVector(Vector3.forward * _dist);
-            transform.rotation = _obj2world * (_world2controller * _rightControllerGameObj.transform.rotation);
-        } else
-        {
-            transform.rotation = _obj2world;
         }
     }
 }
