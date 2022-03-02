@@ -77,6 +77,6 @@ public class Eraser : MonoBehaviour
     }
     public void updatePensize(float pensize) {
         _penSize = (int)pensize;
-        _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
+        _colors = Enumerable.Repeat(Color.white, _penSize * _penSize).ToArray();
     }
 }
