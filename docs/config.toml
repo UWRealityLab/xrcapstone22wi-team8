@@ -48,3 +48,9 @@ url = "https://github.com/UWRealityLab/xrcapstone22wi-team8"
 [[params.ananke_socials]]
 name = "rss"
 url = "https://uwrealitylab.github.io/xrcapstone22wi-team8/index.xml"
+
+[menu]
+[[menu.main]]
+  identifier = 'outside'
+  name = 'File Transfer'
+  url = '/outside/'

@@ -8,6 +8,7 @@ public class MoveWithController : MonoBehaviour
     // Rate for scaling down the input value from controller, in case too aggressive.
     public float InputScale;
 
+    // Instruction about how to move the object
     public string Instruction = "Move with right controller. Use joystick to change distance";
 
     // The rotation of this object relative to the controller.
