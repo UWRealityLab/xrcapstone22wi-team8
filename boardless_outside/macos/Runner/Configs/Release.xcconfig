@@ -1,0 +1,4 @@
+#include "../../Flutter/Flutter-Release.xcconfig"
+#include "Warnings.xcconfig"
+ENABLE_HARDENED_RUNTIME = YES;
+DEVELOPMENT_TEAM = 2H866F22W7;
