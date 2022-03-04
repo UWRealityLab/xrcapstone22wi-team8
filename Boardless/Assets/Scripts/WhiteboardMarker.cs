@@ -23,7 +23,7 @@ public class WhiteboardMarker : MonoBehaviour
     {
         _renderer = _tip.GetComponent<Renderer>();
         _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
-        _tipHeight = _tip.localScale.y;
+        _tipHeight = _tip.localScale.y * 3 /4;
         _tipOrigin = _tip.localPosition;
         cast_pos = transform.up;
     }
@@ -37,9 +37,10 @@ public class WhiteboardMarker : MonoBehaviour
     {
 
         int layer_mask = LayerMask.GetMask("Whiteboard");
-        if (Physics.Raycast(_tip.position, cast_pos, out _touch, _tipHeight * 3.5f, layer_mask))
+        if (Physics.Raycast(_tip.position, cast_pos, out _touch, _tipHeight*1.5f, layer_mask))
         {
-            if (_touch.distance <= _tipHeight/2) {
+
+            if(_touch.distance < _tipHeight*0.95) {
                 if (_touch.transform.CompareTag("Whiteboard"))
                 {
                     if (_whiteboard == null)
@@ -67,12 +68,15 @@ public class WhiteboardMarker : MonoBehaviour
                     {
                         _whiteboard.texture.SetPixels(x, y, _penSize, _penSize, _colors);
 
-                        for (float f = 0.01f; f < 1.00f; f += 0.01f)
+                        for (float f = 0.005f; f < 1.00f; f += 0.005f)
                         {
                             var lerpX = (int)Mathf.Lerp(_lastTouchPos.x, x, f);
                             var lerpY = (int)Mathf.Lerp(_lastTouchPos.y, y, f);
                             _whiteboard.texture.SetPixels(lerpX, lerpY, _penSize, _penSize, _colors);
                         }
+
+            //          transform.rotation = _lastTouchRot;
+                        
                         _whiteboard.texture.Apply();
                     }
 
@@ -81,15 +85,12 @@ public class WhiteboardMarker : MonoBehaviour
                     _touchedLastFrame = true;
                     return;
                 }
-            } else if (_touch.distance >= 4/5*_tipHeight) {
-                _tip.localPosition = _tipOrigin;
-                cast_pos = transform.up;
             }
+        } else {
+            cast_pos = transform.up;
+            _tip.transform.localPosition = _tipOrigin;
         }
         _whiteboard = null;
-        // if (_touchedLastFrame) {
-        //     cast_pos = transform.up;
-        // }
         _touchedLastFrame = false;
     }
 
