@@ -1,0 +1,203 @@
+{
+    "m_SelectedDeviceId": "1WMHH830JV1104",
+    "m_SelectedPackage": {
+        "deviceId": "1WMHH830JV1104",
+        "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+        "processId": 28132,
+        "exited": false
+    },
+    "m_SelectedPriority": 0,
+    "m_KnownPackagesForSerialization": [
+        {
+            "deviceId": "1WMHHB6B9P1484",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 6111,
+            "exited": true
+        },
+        {
+            "deviceId": "1WMHHB6B9P1484",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 7024,
+            "exited": true
+        },
+        {
+            "deviceId": "1WMHHB6B9P1484",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 7954,
+            "exited": true
+        },
+        {
+            "deviceId": "1WMHHB6B9P1484",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 8492,
+            "exited": true
+        },
+        {
+            "deviceId": "1WMHHB6B9P1484",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 9089,
+            "exited": true
+        },
+        {
+            "deviceId": "1WMHHB6B9P1484",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 9931,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH8330P1164",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 8010,
+            "exited": true
+        },
+        {
+            "deviceId": "1WMHH8330P1164",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 8752,
+            "exited": true
+        },
+        {
+            "deviceId": "1WMHH8330P1164",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 9140,
+            "exited": true
+        },
+        {
+            "deviceId": "1WMHH8330P1164",
+            "name": "com.oculus.os.clearactivity",
+            "processId": 5415,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH8330P1164",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 9841,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 5246,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 13580,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 14006,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 22538,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 24947,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 25369,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 25725,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 26169,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 26558,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 26959,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 27793,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 28132,
+            "exited": false
+        }
+    ],
+    "m_Tags": {
+        "m_Entries": [
+            {
+                "m_Name": "Filter by all listed tags",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "No Filter",
+                "m_Selected": true
+            },
+            {
+                "m_Name": "",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "Tag Control...",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "Unity",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "CRASH",
+                "m_Selected": false
+            }
+        ]
+    },
+    "m_MemoryViewerState": {
+        "MemoryWindowHeight": 300.0,
+        "MemoryWindowWidth": 170.0,
+        "MemoryTypeEnabled": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
+        "MemoryGroup": 2,
+        "Behavior": 0
+    },
+    "m_Filter": "",
+    "m_FilterIsRegularExpression": false,
+    "m_SymbolPaths": []
+}

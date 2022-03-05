@@ -53,21 +53,21 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyA0efhefY3AJs3poNc8XNlBF7N7A4-i0xM',
-    appId: '1:701224176115:ios:9f71fdd233c7e174972a86',
+    appId: '1:701224176115:ios:874c56a1927d4802972a86',
     messagingSenderId: '701224176115',
     projectId: 'xrcapstone22wi-team8',
     storageBucket: 'xrcapstone22wi-team8.appspot.com',
-    iosClientId: '701224176115-q0olq4q0sjg604hok9nome5cum9dk6ns.apps.googleusercontent.com',
-    iosBundleId: 'edu.washington.cs.realitylab.xrcapstone22wi-team8.iOS',
+    iosClientId: '701224176115-b2nfsfmn124nitpsh9skfe9oooeicck3.apps.googleusercontent.com',
+    iosBundleId: 'edu.washington.cs.realitylab.xrcapstone22wi-team8',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyA0efhefY3AJs3poNc8XNlBF7N7A4-i0xM',
-    appId: '1:701224176115:ios:49cb80ef054c856b972a86',
+    appId: '1:701224176115:ios:874c56a1927d4802972a86',
     messagingSenderId: '701224176115',
     projectId: 'xrcapstone22wi-team8',
     storageBucket: 'xrcapstone22wi-team8.appspot.com',
-    iosClientId: '701224176115-lf9rdvrdmsjim7j71t4olmq7hc9f1qc8.apps.googleusercontent.com',
-    iosBundleId: 'edu.washington.cs.realitylab.xrcapstone22wi-team8.macOS',
+    iosClientId: '701224176115-b2nfsfmn124nitpsh9skfe9oooeicck3.apps.googleusercontent.com',
+    iosBundleId: 'edu.washington.cs.realitylab.xrcapstone22wi-team8',
   );
 }
