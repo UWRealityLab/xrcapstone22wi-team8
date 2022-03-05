@@ -25,8 +25,9 @@ public class ChangeScale : MonoBehaviour
     private InputDevice _leftController;
     private ScaleMode _mode;
     private GameObject _scaleInstruction;
+    private bool _primaryButtonPressed = false;
 
-    
+
     // Get the left controller as Input device.
     void Awake()
     {
@@ -58,10 +59,13 @@ public class ChangeScale : MonoBehaviour
     {
         if (_enable)
         {
-            if (_leftController.TryGetFeatureValue(CommonUsages.primaryButton, out bool inputBool) && inputBool)
+            var oldValue = _primaryButtonPressed;
+            if (_leftController.TryGetFeatureValue(CommonUsages.primaryButton, out _primaryButtonPressed))
             {
-                _mode = _mode == ScaleMode.Overall ? ScaleMode.X : _mode + 1;
-                _scaleInstruction.GetComponent<UnityEngine.UI.Text>().text = Instruction + Enum.GetName(typeof(ScaleMode), _mode);
+                if ((oldValue != _primaryButtonPressed) && _primaryButtonPressed) {
+                    _mode = _mode == ScaleMode.Overall ? ScaleMode.X : _mode + 1;
+                    _scaleInstruction.GetComponent<UnityEngine.UI.Text>().text = Instruction + Enum.GetName(typeof(ScaleMode), _mode);
+                }
             }
 
             Vector3 diff = Vector3.zero;

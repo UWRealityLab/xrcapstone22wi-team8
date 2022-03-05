@@ -3498,6 +3498,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -2
       objectReference: {fileID: 0}
+    - target: {fileID: 4052524811240481169, guid: d1fdad451f2382c47a8a48c86e44980b, type: 3}
+      propertyPath: Firebase
+      value: 
+      objectReference: {fileID: 1727961230}
     - target: {fileID: 4052524811451257685, guid: d1fdad451f2382c47a8a48c86e44980b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
