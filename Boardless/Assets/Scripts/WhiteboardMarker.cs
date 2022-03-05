@@ -24,7 +24,7 @@ public class WhiteboardMarker : MonoBehaviour
     private Quaternion _lastTouchRot;
     private Vector3 cast_pos;
     private InputDevice _rightController;
-
+    private bool gotColor;
     void Start()
     {
         _renderer = _tip.GetComponent<Renderer>();
@@ -100,7 +100,7 @@ public class WhiteboardMarker : MonoBehaviour
                     }
 
                     _lastTouchPos = new Vector2(x, y);
-                //    _lastTouchRot = transform.rotation;
+                     //_lastTouchRot = transform.rotation;
                     _touchedLastFrame = true;
                     return;
                 }
