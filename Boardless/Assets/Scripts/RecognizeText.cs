@@ -13,6 +13,7 @@ public class RecognizeText : MonoBehaviour
     private InputDevice _rightController;
     private bool _enable = false;
     private GameObject _textBox;
+    private bool _isSecondaryButtonPressed = false;
 
     private void Start()
     {
@@ -21,13 +22,15 @@ public class RecognizeText : MonoBehaviour
         UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristics, rightHandedControllers);
 
         _rightController = rightHandedControllers[0];
+        _tesseractDriver = new TesseractDriver();
+        _tesseractDriver.CheckTessVersion();
+        _tesseractDriver.Setup(null);
     }
 
     // Enables scaling. Called when object starts selected.
     public void ActivateOCR()
     {
         _enable = true;
-
     }
 
     // Disables scaling. Called when object exits selected.
@@ -40,20 +43,14 @@ public class RecognizeText : MonoBehaviour
     {
         if (_enable)
         {
-            if (_textBox is null)
+            var oldValue = _isSecondaryButtonPressed;
+            if (_rightController.TryGetFeatureValue(CommonUsages.secondaryButton, out _isSecondaryButtonPressed))
             {
-                _textBox = Instantiate(textDisplay, new Vector3(0, 2, 0), Quaternion.identity);
-            }
-            if (_rightController.TryGetFeatureValue(CommonUsages.secondaryButton, out bool inputBool) && inputBool)
-            {
-                var whiteboard = this.transform.GetComponent<Whiteboard>(); 
-                Texture2D originalTexture = whiteboard.texture;
-                Texture2D texture = new Texture2D(originalTexture.width, originalTexture.height, TextureFormat.ARGB32, false);
-                texture.SetPixels32(originalTexture.GetPixels32());
-                texture.Apply();
-
-                _tesseractDriver = new TesseractDriver();
-                Recoginze(texture);
+                if ((_isSecondaryButtonPressed != oldValue) && _isSecondaryButtonPressed)
+                {
+                    var whiteboard = this.transform.GetComponent<Whiteboard>();
+                    Recoginze(whiteboard.texture);
+                }
             }
         }
     }
@@ -63,36 +60,44 @@ public class RecognizeText : MonoBehaviour
         _texture = outputTexture;
 
         ClearTextDisplay();
-        _tesseractDriver.CheckTessVersion();
-        _tesseractDriver.Setup(OnSetupCompleteRecognize);
-    }
-
-    private void OnSetupCompleteRecognize()
-    {
         AddToTextDisplay(_tesseractDriver.Recognize(_texture));
         AddToTextDisplay(_tesseractDriver.GetErrorMessage(), true);
     }
 
     private void ClearTextDisplay()
     {
-        if (_textBox is null)
-        {
-            _textBox = Instantiate(textDisplay, new Vector3(0, 2, 0), Quaternion.identity);
-        } else
-        {
-            _textBox.GetComponent<UnityEngine.UI.Text>().text = "";
-        }
+        if (_textBox is null) return;
+        _textBox.GetComponentInChildren<TextMesh>().text = "";
     }
 
     private void AddToTextDisplay(string text, bool isError = false)
     {
         if (string.IsNullOrWhiteSpace(text)) return;
 
-        _textBox.GetComponent<UnityEngine.UI.Text>().text += text;
-
         if (isError)
-            Debug.LogError(text);
+            Debug.LogError($"Recognization failed: {text}");
         else
-            Debug.Log(text);
+            Debug.Log($"Recognized {text}");
+
+        if (_textBox is null)
+        {
+            if (textDisplay is null)
+            {
+                if (!Application.isEditor)
+                {
+                    Debug.LogError("RecognizeText no textDisplay");
+                }
+                return;
+            }
+
+            _textBox = Instantiate(textDisplay, new Vector3(0, 2, 0), Quaternion.identity);
+            if (_textBox is null)
+            {
+                Debug.LogError("RecognizeText cannot duplicate textDisplay");
+                return;
+            }
+            ClearTextDisplay();
+        }
+        _textBox.GetComponentInChildren<TextMesh>().text += text;
     }
 }
