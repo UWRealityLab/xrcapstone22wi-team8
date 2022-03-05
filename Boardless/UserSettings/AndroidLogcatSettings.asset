@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "1WMHHB6B9P1484",
+    "m_SelectedDeviceId": "1WMHH830JV1104",
     "m_SelectedPackage": {
-        "deviceId": "1WMHHB6B9P1484",
+        "deviceId": "1WMHH830JV1104",
         "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
-        "processId": 9931,
+        "processId": 5246,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -72,6 +72,12 @@
             "deviceId": "1WMHH8330P1164",
             "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
             "processId": 9841,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 5246,
             "exited": false
         }
     ],
