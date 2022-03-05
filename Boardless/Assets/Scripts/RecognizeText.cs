@@ -7,6 +7,7 @@ using UnityEngine.XR;
 public class RecognizeText : MonoBehaviour
 {
     [SerializeField] private GameObject textDisplay;
+    [SerializeField] private FirebaseServices firebase;
 
     private TesseractDriver _tesseractDriver;
     private Texture2D _texture;
@@ -75,9 +76,14 @@ public class RecognizeText : MonoBehaviour
         if (string.IsNullOrWhiteSpace(text)) return;
 
         if (isError)
+        {
             Debug.LogError($"Recognization failed: {text}");
+        }
         else
+        {
             Debug.Log($"Recognized {text}");
+            firebase.AddText(text);
+        }
 
         if (_textBox is null)
         {
