@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "1WMHH830JV1104",
         "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
-        "processId": 5246,
+        "processId": 14006,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -78,6 +78,18 @@
             "deviceId": "1WMHH830JV1104",
             "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
             "processId": 5246,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 13580,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 14006,
             "exited": false
         }
     ],

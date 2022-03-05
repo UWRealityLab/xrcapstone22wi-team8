@@ -73,8 +73,11 @@ public class WhiteboardMarker : MonoBehaviour
                     var y = (int)(_touchPos.y * _whiteboard.textureSize.y - (_penSize / 2));
 
                     if (y < 0 || y > _whiteboard.textureSize.y || x < 0 || x > _whiteboard.textureSize.x) return;
-                    if (_rightController.TryGetFeatureValue(CommonUsages.trigger, out float inputBool))
+                    // Debug.Log(_rightController.TryGetFeatureValue(CommonUsages.trigger, out float inputBool));
+                    // Debug.Log(inputBool);
+                    if (_rightController.TryGetFeatureValue(CommonUsages.triggerButton, out bool inputBool) && inputBool)
                     {
+                        
                         _touchedLastFrame = false;
                         Color toSet = _whiteboard.texture.GetPixel(x, y);
                         updateColor(toSet);
