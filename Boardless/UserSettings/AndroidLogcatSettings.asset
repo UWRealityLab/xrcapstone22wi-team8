@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "1WMHH830JV1104",
         "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
-        "processId": 14006,
+        "processId": 28132,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -90,6 +90,60 @@
             "deviceId": "1WMHH830JV1104",
             "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
             "processId": 14006,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 22538,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 24947,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 25369,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 25725,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 26169,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 26558,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 26959,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 27793,
+            "exited": false
+        },
+        {
+            "deviceId": "1WMHH830JV1104",
+            "name": "edu.washington.cs.realitylab.xrcapstone22wi_team8",
+            "processId": 28132,
             "exited": false
         }
     ],

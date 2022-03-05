@@ -7,9 +7,8 @@ using UnityEngine.XR;
 public class PanelControl : MonoBehaviour
 {
     public GameObject Panel;
-
     private InputDevice _rightController;
-
+    private bool _lastPressed = false;
     // Sets up the controller GameObject and InputDevice and gets the Rigidbody.
     void Awake()
     {
@@ -18,6 +17,7 @@ public class PanelControl : MonoBehaviour
         UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristics, rightHandedControllers);
 
         _rightController = rightHandedControllers[0];
+        this.enabled = true;
     }
 
     public void TogglePanel()
@@ -31,8 +31,11 @@ public class PanelControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (_rightController.TryGetFeatureValue(CommonUsages.primaryButton, out bool inputBool) && inputBool)
-        {
+        var lastBool = _lastPressed;
+        if (!_rightController.TryGetFeatureValue(CommonUsages.primaryButton, out _lastPressed)) {
+            return;
+        }
+        if ((lastBool != _lastPressed) && _lastPressed) {
             TogglePanel();
         }
     }
