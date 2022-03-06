@@ -17,8 +17,8 @@ public class Whiteboard : MonoBehaviour
     void Start()
     {
         r = GetComponent<Renderer>();
-        textureSize.x = (int)(300*r.transform.localScale.x);
-        textureSize.y = (int)(300*r.transform.localScale.y);
+        textureSize.x = (int)(350*r.transform.localScale.x);
+        textureSize.y = (int)(350*r.transform.localScale.y);
         texture = new Texture2D((int)textureSize.x, (int)textureSize.y);
         r.material.mainTexture = texture;
         Color fillColor = Color.white;
@@ -33,9 +33,9 @@ public class Whiteboard : MonoBehaviour
     }
 
     void Update() {
-        if (texture.width != (int)(300*r.transform.localScale.x) || texture.height != (int)(300*r.transform.localScale.y)) {
-            textureSize.x = (int)(300*r.transform.localScale.x);
-            textureSize.y = (int)(300*r.transform.localScale.y);
+        if (texture.width != (int)(350*r.transform.localScale.x) || texture.height != (int)(350*r.transform.localScale.y)) {
+            textureSize.x = (int)(350*r.transform.localScale.x);
+            textureSize.y = (int)(350*r.transform.localScale.y);
             if ((int)textureSize.x == 0 || (int)textureSize.y == 0) {
                 return;
             }
