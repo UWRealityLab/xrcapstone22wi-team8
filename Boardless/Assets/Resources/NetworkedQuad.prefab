@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 4473010271549721243}
   - component: {fileID: 2562238095913162765}
   - component: {fileID: 7338731113349990449}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: NetworkedQuad
   m_TagString: Whiteboard
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &4010342448592161093
@@ -259,6 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InputScale: 0.3
+  Instruction: Move with right controller. Use joystick to change distance
 --- !u!114 &8885863737392890147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,6 +273,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InputScale: 0.3
+  Instruction: 'Use joystick to change scale. Press X to change the dimension
+
+    Curr
+    dim: '
 --- !u!114 &3313070334138163877
 MonoBehaviour:
   m_ObjectHideFlags: 0
