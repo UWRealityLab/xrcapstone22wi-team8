@@ -22,9 +22,11 @@ public class PlayerNameInputField : MonoBehaviour
     // Store the PlayerPref Key to avoid typos
     const string playerNamePrefKey = "PlayerName";
 
-
     #endregion
 
+    private InputField _inputField;
+    private bool _inputFieldWasFocused;
+    private TouchScreenKeyboard _keyboard;
 
     #region MonoBehaviour CallBacks
 
@@ -36,7 +38,7 @@ public class PlayerNameInputField : MonoBehaviour
 
 
         string defaultName = string.Empty;
-        InputField _inputField = this.GetComponent<InputField>();
+        _inputField = this.GetComponent<InputField>();
         if (_inputField!=null)
         {
             if (PlayerPrefs.HasKey(playerNamePrefKey))
@@ -50,6 +52,30 @@ public class PlayerNameInputField : MonoBehaviour
         PhotonNetwork.NickName =  defaultName;
     }
 
+    private void Update()
+    {
+        bool inputFieldIsFocused = _inputField.isFocused;
+        if (inputFieldIsFocused && !_inputFieldWasFocused)
+        {
+            _keyboard = TouchScreenKeyboard.Open("");
+        }
+        _inputFieldWasFocused = inputFieldIsFocused;
+        if (_keyboard != null)
+        {
+            _inputField.text = _keyboard.text;
+            _inputField.caretPosition = _inputField.text.Length;
+            switch (_keyboard.status)
+            {
+                case TouchScreenKeyboard.Status.Visible:
+                    break;
+                case TouchScreenKeyboard.Status.Canceled:
+                case TouchScreenKeyboard.Status.Done:
+                case TouchScreenKeyboard.Status.LostFocus:
+                    _inputField.DeactivateInputField();
+                    break;
+            }
+        }
+    }
 
     #endregion
 
