@@ -18,10 +18,15 @@ public class ChangeScale : MonoBehaviour
     // Rate for scaling down the input value from controller, in case too aggressive.
     public float InputScale;
 
+    // Instruction about how to change the scale.
+    public string Instruction = "Use joystick to change scale. Press X to change the dimension\nCurr dim: ";
+
     private bool _enable = false;
     private InputDevice _leftController;
-    private ScaleMode _mode = ScaleMode.Overall;
+    private ScaleMode _mode;
+    private GameObject _scaleInstruction;
 
+    
     // Get the left controller as Input device.
     void Awake()
     {
@@ -30,12 +35,15 @@ public class ChangeScale : MonoBehaviour
         UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristics, leftHandedControllers);
 
         _leftController = leftHandedControllers[0];
+        _scaleInstruction = GameObject.Find("ScaleInstruction");
     }
 
     // Enables scaling. Called when object starts selected.
     public void ActivateScaling()
     {
         _enable = true;
+        _mode = ScaleMode.Overall;
+        _scaleInstruction.GetComponent<UnityEngine.UI.Text>().text = Instruction + Enum.GetName(typeof(ScaleMode), _mode);
 
     }
 
@@ -43,6 +51,7 @@ public class ChangeScale : MonoBehaviour
     public void DeactivatScaling()
     {
         _enable = false;
+        _scaleInstruction.GetComponent<UnityEngine.UI.Text>().text = "";
     }
 
     void FixedUpdate()
@@ -52,6 +61,7 @@ public class ChangeScale : MonoBehaviour
             if (_leftController.TryGetFeatureValue(CommonUsages.primaryButton, out bool inputBool) && inputBool)
             {
                 _mode = _mode == ScaleMode.Overall ? ScaleMode.X : _mode + 1;
+                _scaleInstruction.GetComponent<UnityEngine.UI.Text>().text = Instruction + Enum.GetName(typeof(ScaleMode), _mode);
             }
 
             Vector3 diff = Vector3.zero;
@@ -62,7 +72,8 @@ public class ChangeScale : MonoBehaviour
                 if (_mode == ScaleMode.Overall)
                 {
                     diff = Vector3.one * change;
-                } else
+                }
+                else
                 {
                     diff[(int)_mode] += change;
                 }
