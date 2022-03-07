@@ -116,6 +116,7 @@ public class FirebaseFilesDropdown : MonoBehaviour
                 else
                 {
                     Debug.LogError($"File download failed: {path}.");
+                    Debug.LogError(task.Exception);
                 }
             });
     }
