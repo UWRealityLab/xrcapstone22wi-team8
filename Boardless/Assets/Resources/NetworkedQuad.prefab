@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 4473010271549721243}
   - component: {fileID: 2562238095913162765}
   - component: {fileID: 7338731113349990449}
+  - component: {fileID: 2757898690758689962}
   m_Layer: 7
   m_Name: NetworkedQuad
   m_TagString: Whiteboard
@@ -137,10 +138,34 @@ MonoBehaviour:
       m_Calls: []
   m_HoverEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2757898690758689962}
+        m_TargetAssemblyTypeName: RecognizeText, Assembly-CSharp
+        m_MethodName: ActivateOCR
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2757898690758689962}
+        m_TargetAssemblyTypeName: RecognizeText, Assembly-CSharp
+        m_MethodName: DeactivatOCR
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -343,3 +368,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Object: {fileID: 4786960236210486329}
+--- !u!114 &2757898690758689962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4786960236210486329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bbb8bcfd147f4db6a2063ebd74d754c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textDisplay: {fileID: 7905366643823816260, guid: a07f621bd631b4868b7d9a82ef0fd25b, type: 3}
+  firebase: {fileID: 6382235880284652829, guid: a0a483b2a81154095a9e3e439d2c4771, type: 3}
