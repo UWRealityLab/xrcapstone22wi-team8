@@ -1,3 +1,4 @@
+import 'package:boardless_outside/FirebaseImage.dart';
 import 'package:boardless_outside/SwipeToDeleteBackground.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -6,6 +7,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/services.dart';
+import 'package:path/path.dart' as p;
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 firebase_storage.FirebaseStorage storage =
@@ -96,6 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ".gitignore", ".gitattributes", "README", "LICENSE",
     "gradle.properties", "Makefile", "Dockerfile", "Podfile",
   };
+  static const Set<String> imageExtensions = {".jpg", ".jpeg", ".png"};
 
   final Stream<QuerySnapshot> _usersStream =
       firestore.collection(room).snapshots();
@@ -157,16 +160,21 @@ class _MyHomePageState extends State<MyHomePage> {
                   Map<String, dynamic> data =
                       document.data()! as Map<String, dynamic>;
                   if (data.containsKey("ref")) {
+                    String ref = data['ref'];
                     return Dismissible(
                         key: Key(document.id),
                         onDismissed: (direction) {
                           firestore.collection(room).doc(document.id).delete();
-                          storage.ref().child(room).child(data['ref']).delete();
+                          storage.ref().child(room).child(ref).delete();
                         },
                         background: const SwipeToDeleteBackground(),
                         child: ListTile(
                           title: Text(data['name']),
-                          subtitle: Text(data['ref']),
+                          subtitle: (imageExtensions
+                                  .contains(p.extension(ref).toLowerCase()))
+                              ? FirebaseImage(
+                                  storage.ref().child(room).child(ref))
+                              : Text(ref),
                         ));
                   } else {
                     return Dismissible(
