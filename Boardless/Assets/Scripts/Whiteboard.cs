@@ -6,6 +6,7 @@ public class Whiteboard : MonoBehaviour
 {
     public Texture2D texture;
     public Vector2 textureSize = new Vector2(2048, 2048);
+    public Texture2D inputTexture;
     private Renderer r;
     private Color[] texColors;
     private Color[] newColors;
@@ -21,15 +22,21 @@ public class Whiteboard : MonoBehaviour
         textureSize.y = (int)(350*r.transform.localScale.y);
         texture = new Texture2D((int)textureSize.x, (int)textureSize.y);
         r.material.mainTexture = texture;
-        Color fillColor = Color.white;
-        var fillColorArray =  texture.GetPixels();
-        
-        for(var i = 0; i < fillColorArray.Length; ++i)
-        {
-            fillColorArray[i] = fillColor;
+        if (inputTexture == null) {
+            Color fillColor = Color.white;
+            var fillColorArray =  texture.GetPixels();
+            for(var i = 0; i < fillColorArray.Length; ++i)
+            {
+                fillColorArray[i] = fillColor;
+            }
+            texture.SetPixels( fillColorArray );
+            texture.Apply();
+        } else {
+            var texture2 = Resize(inputTexture, (int)textureSize.x, (int)textureSize.y);
+            var fill = texture2.GetPixels();
+            texture.SetPixels(fill);
+            texture.Apply();
         }
-        texture.SetPixels( fillColorArray );
-        texture.Apply();
     }
 
     void Update() {
@@ -92,5 +99,17 @@ public class Whiteboard : MonoBehaviour
 						  c1.g + (c2.g - c1.g) * value, 
 						  c1.b + (c2.b - c1.b) * value, 
 						  c1.a + (c2.a - c1.a) * value);
+    }
+
+
+    Texture2D Resize(Texture2D texture2D,int targetX,int targetY)
+    {
+        RenderTexture rt=new RenderTexture(targetX, targetY,24);
+        RenderTexture.active = rt;
+        Graphics.Blit(texture2D,rt);
+        Texture2D result=new Texture2D(targetX,targetY);
+        result.ReadPixels(new Rect(0,0,targetX,targetY),0,0);
+        result.Apply();
+        return result;
     }
 }
