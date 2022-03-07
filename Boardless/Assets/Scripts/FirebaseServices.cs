@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Firebase;
 using Firebase.Firestore;
 using Firebase.Storage;
@@ -109,5 +110,37 @@ public class FirebaseServices : MonoBehaviour
             text = document.GetValue<string>("content");
         }
         return text;
+    }
+
+    public string LocalDirectory()
+    {
+        return Path.Combine(Application.persistentDataPath, FirebaseServices.Room);
+    }
+
+    public string LocalPathForFile(FirebaseFile file)
+    {
+        if (file.RefOrNull == null)
+        {
+            Debug.LogError($"Getting path for {file.Name} but not a file");
+            return null;
+        }
+        else
+        {
+            return Path.Combine(LocalDirectory(), file.RefOrNull);
+        }
+    }
+
+    public string LocalURIForFile(FirebaseFile file)
+    {
+        string path = LocalPathForFile(file);
+        if (path == null)
+        {
+            Debug.LogError($"Getting URI for {file.Name} but not a file");
+            return null;
+        }
+        else
+        {
+            return new Uri(path).AbsoluteUri;
+        }
     }
 }
