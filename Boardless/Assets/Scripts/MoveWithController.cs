@@ -33,7 +33,17 @@ public class MoveWithController : MonoBehaviour
         var desiredCharacteristics = UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Right | UnityEngine.XR.InputDeviceCharacteristics.Controller;
         UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristics, rightHandedControllers);
 
-        _rightController = rightHandedControllers[0];
+        if (rightHandedControllers.Count > 0)
+        {
+            _rightController = rightHandedControllers[0];
+        }
+        else
+        {
+            if (!Application.isEditor)
+            {
+                Debug.LogError("No rightHandedController");
+            }
+        }
         _moveInstruction = GameObject.Find("MoveInstruction");
     }
 
