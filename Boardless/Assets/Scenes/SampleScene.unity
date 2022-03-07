@@ -468,6 +468,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4217217767072753840, guid: 5d364ff2077464d068e3ac5801318943, type: 3}
+      propertyPath: Firebase
+      value: 
+      objectReference: {fileID: 1727961230}
     - target: {fileID: 4217217767286700822, guid: 5d364ff2077464d068e3ac5801318943, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
