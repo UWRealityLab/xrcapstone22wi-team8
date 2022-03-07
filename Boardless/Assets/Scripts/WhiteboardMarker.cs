@@ -129,6 +129,8 @@ public class WhiteboardMarker : MonoBehaviour
                         {
                             var lerpX = (int)Mathf.Lerp(_lastTouchPos.x, x, f);
                             var lerpY = (int)Mathf.Lerp(_lastTouchPos.y, y, f);
+                            Debug.Log(lerpX);
+                            Debug.Log(lerpY);
                             _whiteboard.texture.SetPixels(lerpX, lerpY, _penSize, _penSize, _colors);
                         }
 
