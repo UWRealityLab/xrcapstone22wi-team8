@@ -83,6 +83,10 @@ public class ChangeScale : MonoBehaviour
                 }
             }
             transform.localScale = Vector3.Max(Vector3.zero, transform.localScale + diff);
+            if (transform.localScale.Equals(Vector3.zero))
+            {
+                Destroy(this);
+            }
         }
     }
 }
