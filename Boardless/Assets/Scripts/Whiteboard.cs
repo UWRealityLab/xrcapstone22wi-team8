@@ -23,7 +23,6 @@ public class Whiteboard : MonoBehaviour
         r.material.mainTexture = texture;
         Color fillColor = Color.white;
         var fillColorArray =  texture.GetPixels();
-        
         for(var i = 0; i < fillColorArray.Length; ++i)
         {
             fillColorArray[i] = fillColor;
