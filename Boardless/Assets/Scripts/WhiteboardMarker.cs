@@ -67,11 +67,6 @@ public class WhiteboardMarker : MonoBehaviour
             }
             _eraserMode = !_eraserMode;
         }
-        // if (_rightController.TryGetFeatureValue(CommonUsages.triggerButton, out bool inputBool) && inputBool)
-        // {
-        //     _oldColor = _renderer.material.color;
-        //     updateColor(Color.White);
-        // }
         int layer_mask = LayerMask.GetMask("Whiteboard");
         if (Physics.Raycast(_tip.position, cast_pos, out _touch, _tipHeight*1.45f, layer_mask))
         {
@@ -100,6 +95,24 @@ public class WhiteboardMarker : MonoBehaviour
                     if (y < 0 || y > _whiteboard.textureSize.y || x < 0 || x > _whiteboard.textureSize.x) return;
                     // Debug.Log(_rightController.TryGetFeatureValue(CommonUsages.trigger, out float inputBool));
                     // Debug.Log(inputBool);
+                    // if ((lastBool != _lastPressed) && _lastPressed) {
+                    //     Debug.Log("saving!");
+                    //     byte[] bytes = _whiteboard.texture.EncodeToPNG();
+                    //     var dirPath = Application.dataPath + "/../SaveImages/";
+                    //     if(!System.IO.Directory.Exists(dirPath)) {
+                    //         System.IO.Directory.CreateDirectory(dirPath);
+                    //     }
+                    //     System.IO.File.WriteAllBytes(dirPath + "Image" + ".png", bytes);
+                    //     return;
+                    //     // if (_eraserMode) {
+                    //     //     updateColor(_oldColor);
+                    //     //     _oldColor = Color.white;
+                    //     // } else {
+                    //     //     _oldColor = _renderer.material.color;
+                    //     //     updateColor(Color.white);
+                    //     // }
+                    //     // _eraserMode = !_eraserMode;
+                    // }
                     if (_rightController.TryGetFeatureValue(CommonUsages.triggerButton, out bool inputBool) && inputBool)
                     {
                         
@@ -145,5 +158,4 @@ public class WhiteboardMarker : MonoBehaviour
         _renderer.material.color = newcolor;
         _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
     }
-
 }
