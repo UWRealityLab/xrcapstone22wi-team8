@@ -8,7 +8,7 @@ public class PanelControl : MonoBehaviour
 {
     public GameObject Panel;
     public Camera Cam;
-    public Vector3 localPos;
+    public Vector3 LocalPos;
 
     private InputDevice _rightController;
     private bool _lastPressed = false;
@@ -39,8 +39,8 @@ public class PanelControl : MonoBehaviour
         {
             dist = hit.distance - (float)0.1;
         }
-        localPos.z = dist;
-        Panel.transform.localPosition = localPos;
+        LocalPos.z = dist;
+        Panel.transform.localPosition = LocalPos;
         Panel.transform.eulerAngles = Cam.transform.eulerAngles;
 
         var lastBool = _lastPressed;
