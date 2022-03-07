@@ -7,8 +7,8 @@ using UnityEngine.XR;
 public class RecognizeText : MonoBehaviour
 {
     [SerializeField] private GameObject textDisplay;
-    [SerializeField] private FirebaseServices firebase;
 
+    private FirebaseServices _firebase;
     private TesseractDriver _tesseractDriver;
     private Texture2D _texture;
     private InputDevice _rightController;
@@ -22,7 +22,20 @@ public class RecognizeText : MonoBehaviour
         var desiredCharacteristics = UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Right | UnityEngine.XR.InputDeviceCharacteristics.Controller;
         UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristics, rightHandedControllers);
 
-        _rightController = rightHandedControllers[0];
+        _firebase = FindObjectOfType<FirebaseServices>();
+
+
+        if (rightHandedControllers.Count > 0)
+        {
+            _rightController = rightHandedControllers[0];
+        }
+        else
+        {
+            if (!Application.isEditor)
+            {
+                Debug.LogError("No rightHandedController");
+            }
+        }
         _tesseractDriver = new TesseractDriver();
         _tesseractDriver.CheckTessVersion();
         _tesseractDriver.Setup(null);
@@ -82,7 +95,7 @@ public class RecognizeText : MonoBehaviour
         else
         {
             Debug.Log($"Recognized {text}");
-            firebase.AddText(text);
+            _firebase.AddText(text);
         }
 
         if (_textBox is null)
