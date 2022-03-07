@@ -91,6 +91,31 @@ public class FirebaseServices : MonoBehaviour
         });
     }
 
+    public void AddFile(byte[] bytes, string name)
+    {
+        Debug.Log($"Uploading to {name}");
+        string fileRef = name;
+        _storage.GetReference($"{Room}/{fileRef}")
+            .PutBytesAsync(bytes)
+            .ContinueWith(task =>
+            {
+                if (!task.IsFaulted && !task.IsCanceled)
+                {
+                    Debug.Log($"File upload OK: {name}, adding entry");
+                    _db.Collection(Room).AddAsync(new Dictionary<string, object>
+                    {
+                        { "name", name },
+                        { "ref", fileRef }
+                    });
+                }
+                else
+                {
+                    Debug.LogError($"File upload failed: {name}.");
+                    Debug.LogError(task.Exception);
+                }
+            });
+    }
+
     /// <summary>
     /// See https://firebase.google.com/docs/storage/unity/download-files on
     /// how to download the file contents.
@@ -121,7 +146,7 @@ public class FirebaseServices : MonoBehaviour
     {
         if (file.RefOrNull == null)
         {
-            Debug.LogError($"Getting path for {file.Name} but not a file");
+            Debug.LogWarning($"Getting path for {file.Name} but not a file");
             return null;
         }
         else
@@ -135,7 +160,7 @@ public class FirebaseServices : MonoBehaviour
         string path = LocalPathForFile(file);
         if (path == null)
         {
-            Debug.LogError($"Getting URI for {file.Name} but not a file");
+            Debug.LogWarning($"Getting URI for {file.Name} but not a file");
             return null;
         }
         else
