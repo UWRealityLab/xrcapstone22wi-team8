@@ -458,6 +458,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 553350963}
     m_Modifications:
+    - target: {fileID: 563790030255786926, guid: 2822a103803804112813c064a1773ca2, type: 3}
+      propertyPath: onColorChange.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3168500535834240476}
+    - target: {fileID: 563790030255786926, guid: 2822a103803804112813c064a1773ca2, type: 3}
+      propertyPath: onColorChange.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: updateColor
+      objectReference: {fileID: 0}
     - target: {fileID: 1735707015831426524, guid: 2822a103803804112813c064a1773ca2, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
@@ -469,6 +477,10 @@ PrefabInstance:
     - target: {fileID: 2245402430785481318, guid: 2822a103803804112813c064a1773ca2, type: 3}
       propertyPath: onColorChange.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: updateColor
+      objectReference: {fileID: 0}
+    - target: {fileID: 2317961334907588324, guid: 2822a103803804112813c064a1773ca2, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2317961335740742952, guid: 2822a103803804112813c064a1773ca2, type: 3}
       propertyPath: Firebase
