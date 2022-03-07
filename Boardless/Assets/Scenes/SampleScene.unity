@@ -486,6 +486,10 @@ PrefabInstance:
       propertyPath: Firebase
       value: 
       objectReference: {fileID: 1727961230}
+    - target: {fileID: 2317961336202139408, guid: 2822a103803804112813c064a1773ca2, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 553350966}
     - target: {fileID: 2317961336465954892, guid: 2822a103803804112813c064a1773ca2, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
