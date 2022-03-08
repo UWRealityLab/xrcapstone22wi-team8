@@ -67,9 +67,9 @@ public class Eraser : MonoBehaviour
 
                 if (y < 0 || y > _whiteboard.textureSize.y || x < 0 || x > _whiteboard.textureSize.x) return;
                 if ((lastBool != _lastPressed) && _lastPressed) {
-                    Debug.Log("saving!");
                     byte[] bytes = _whiteboard.texture.EncodeToPNG();
-                    var dirPath = Application.dataPath + "/../SaveImages/";
+                    var dirPath = Application.persistentDataPath + "/../SaveImages/";
+                    Debug.Log(dirPath);
                     if(!System.IO.Directory.Exists(dirPath)) {
                         System.IO.Directory.CreateDirectory(dirPath);
                     }
