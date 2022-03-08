@@ -129,11 +129,16 @@ public class WhiteboardMarker : MonoBehaviour
         GetRenderer();
         _penSize = (int)pensize;
         _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
+
+        // TODO: RPC this realtime
     }
+
     public void updateColor(Color newcolor) {
         GetRenderer();
         _renderer.material.color = newcolor;
         _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
+
+        // TODO: RPC this realtime
     }
 
     public Color CurrentColor()
