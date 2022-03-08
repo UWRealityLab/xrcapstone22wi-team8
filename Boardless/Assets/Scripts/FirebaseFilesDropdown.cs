@@ -184,7 +184,7 @@ public class FirebaseFilesDropdown : MonoBehaviour
                 GameObject quad = PhotonNetwork.Instantiate("NetworkedImageDisplay", SpawnLocation, Quaternion.identity, 0);
                 PhotonView photonView = PhotonView.Get(quad);
                 photonView.RPC(
-                    "LoadImage", RpcTarget.All,
+                    "LoadImage", RpcTarget.AllBuffered,
                     file.Name, file.RefOrNull, file.ContentOrNull, extension
                 );
                 return;
