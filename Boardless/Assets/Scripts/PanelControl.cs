@@ -8,8 +8,8 @@ public class PanelControl : MonoBehaviour
 {
     public GameObject Panel;
     public Camera Cam;
-    public Vector3 LocalPos;
 
+    private Vector3 _localPos;
     private InputDevice _rightController;
     private bool _lastPressed = false;
     // Sets up the controller GameObject and InputDevice and gets the Rigidbody.
@@ -20,7 +20,7 @@ public class PanelControl : MonoBehaviour
         UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristics, rightHandedControllers);
 
         _rightController = rightHandedControllers[0];
-        this.enabled = true;
+        _localPos = Vector3.zero;
     }
 
     public void TogglePanel()
@@ -37,11 +37,13 @@ public class PanelControl : MonoBehaviour
         float dist = 3;
         if (Physics.Raycast(Cam.transform.position, Cam.transform.forward, out hit, dist))
         {
-            dist = hit.distance - (float)0.1;
+            dist = hit.distance - (float)0.2;
         }
-        LocalPos.z = dist;
-        Panel.transform.localPosition = LocalPos;
+        _localPos.z = dist;
+        _localPos.y = (float)(0.15 * dist);
+        Panel.transform.localPosition = _localPos;
         Panel.transform.eulerAngles = Cam.transform.eulerAngles;
+        Panel.transform.localScale = Vector3.one * (float)(0.0016667 * dist);
 
         var lastBool = _lastPressed;
         if (!_rightController.TryGetFeatureValue(CommonUsages.primaryButton, out _lastPressed)) {
