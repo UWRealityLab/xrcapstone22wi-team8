@@ -556,9 +556,29 @@ PrefabInstance:
       propertyPath: onColorChange.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: updateColor
       objectReference: {fileID: 0}
+    - target: {fileID: 2317961334900172303, guid: 2822a103803804112813c064a1773ca2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2317961334900172303, guid: 2822a103803804112813c064a1773ca2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3168500535834240476}
+    - target: {fileID: 2317961334900172303, guid: 2822a103803804112813c064a1773ca2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: updatePensize
+      objectReference: {fileID: 0}
     - target: {fileID: 2317961334907588324, guid: 2822a103803804112813c064a1773ca2, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2317961335618064364, guid: 2822a103803804112813c064a1773ca2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2317961335618064364, guid: 2822a103803804112813c064a1773ca2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2317961335740742952, guid: 2822a103803804112813c064a1773ca2, type: 3}
       propertyPath: Firebase
@@ -568,6 +588,18 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 553350966}
+    - target: {fileID: 2317961336444962954, guid: 2822a103803804112813c064a1773ca2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2317961336444962954, guid: 2822a103803804112813c064a1773ca2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2317961336444962954, guid: 2822a103803804112813c064a1773ca2, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2317961336465954892, guid: 2822a103803804112813c064a1773ca2, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
