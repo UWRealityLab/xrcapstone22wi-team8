@@ -10,7 +10,6 @@ public class WhiteboardMarker : MonoBehaviour
 {
     [SerializeField] private Transform _tip;
     public int _penSize = 5;
-    public FlexibleColorPicker fcp;
     
     private Vector3 _tipOrigin;
     private Renderer _renderer;
@@ -23,49 +22,16 @@ public class WhiteboardMarker : MonoBehaviour
     private bool _touchedLastFrame;
     private Quaternion _lastTouchRot;
     private Vector3 cast_pos;
-    private InputDevice _rightController;
-    private InputDevice _leftController;
-    private bool _eraserMode = false;
-    private Color _oldColor;
-    private bool _lastPressed = false;
+
+    [SerializeField] private WhiteboardMarkerColorUpdating _colorUpdater;
+
     void Start()
     {
-        _renderer = _tip.GetComponent<Renderer>();
+        GetRenderer();
         _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
         _tipHeight = _tip.localScale.y * 3 /4;
         _tipOrigin = _tip.localPosition;
         cast_pos = transform.up;
-
-        var rightHandedControllers = new List<UnityEngine.XR.InputDevice>();
-        var desiredCharacteristics = UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Right | UnityEngine.XR.InputDeviceCharacteristics.Controller;
-        UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristics, rightHandedControllers);
-        if (rightHandedControllers.Count > 0)
-        {
-            _rightController = rightHandedControllers[0];
-        }
-        else
-        {
-            if (!Application.isEditor)
-            {
-                Debug.LogError("No rightHandedController");
-            }
-        }
-        
-        desiredCharacteristics = UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Left | UnityEngine.XR.InputDeviceCharacteristics.Controller;
-        UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristics, rightHandedControllers);
-        if (rightHandedControllers.Count > 0)
-        {
-            _leftController = rightHandedControllers[0];
-        }
-        else
-        {
-            if (!Application.isEditor)
-            {
-                Debug.LogError("No leftHandedController");
-            }
-        }
-
-        _oldColor = Color.red;
     }
 
     void Update()
@@ -75,20 +41,6 @@ public class WhiteboardMarker : MonoBehaviour
 
     private void Draw()
     {
-        var lastBool = _lastPressed;
-        if (!_leftController.TryGetFeatureValue(CommonUsages.secondaryButton, out _lastPressed)) {
-            return;
-        }
-        if ((lastBool != _lastPressed) && _lastPressed) {
-            if (_eraserMode) {
-                updateColor(_oldColor);
-                _oldColor = Color.white;
-            } else {
-                _oldColor = _renderer.material.color;
-                updateColor(Color.white);
-            }
-            _eraserMode = !_eraserMode;
-        }
         int layer_mask = LayerMask.GetMask("Whiteboard");
         if (Physics.Raycast(_tip.position, cast_pos, out _touch, _tipHeight*1.45f, layer_mask))
         {
@@ -135,9 +87,8 @@ public class WhiteboardMarker : MonoBehaviour
                     //     // }
                     //     // _eraserMode = !_eraserMode;
                     // }
-                    if (_rightController.TryGetFeatureValue(CommonUsages.triggerButton, out bool inputBool) && inputBool)
+                    if ((_colorUpdater != null) && _colorUpdater.TriggerButtonPressed())
                     {
-                        
                         _touchedLastFrame = false;
                         Color toSet = _whiteboard.texture.GetPixel(x, y);
                         updateColor(toSet);
@@ -175,11 +126,31 @@ public class WhiteboardMarker : MonoBehaviour
     }
 
     public void updatePensize(float pensize) {
+        GetRenderer();
         _penSize = (int)pensize;
         _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
     }
     public void updateColor(Color newcolor) {
+        GetRenderer();
         _renderer.material.color = newcolor;
         _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
+    }
+
+    public Color CurrentColor()
+    {
+        return GetRenderer().material.color;
+    }
+
+    private Renderer GetRenderer()
+    {
+        if (_renderer is null)
+        {
+            _renderer = _tip.GetComponent<Renderer>();
+            if (_renderer is null)
+            {
+                Debug.LogError("Tip has no renderer");
+            }
+        }
+        return _renderer;
     }
 }
