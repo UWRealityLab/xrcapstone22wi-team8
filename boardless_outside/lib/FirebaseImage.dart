@@ -18,21 +18,26 @@ class _FirebaseImageState extends State<FirebaseImage> {
   bool failed = false;
 
   @override
+  void initState() {
+    widget.fileReference
+        .getData()
+        .then((data) => setState(() {
+              imageBytes = data;
+            }))
+        .catchError((e) => setState(() {
+              errorText = e.toString();
+            }));
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     if (imageBytes != null) {
-      return Image.memory(imageBytes!);
+      return Image.memory(imageBytes!, height: 200);
     } else {
       if (errorText != null) {
         return Text("Could not load: ${errorText!}");
       } else {
-        widget.fileReference
-            .getData()
-            .then((data) => setState(() {
-                  imageBytes = data;
-                }))
-            .catchError((e) => setState(() {
-                  errorText = e.toString();
-                }));
         return const Text("Loading...");
       }
     }

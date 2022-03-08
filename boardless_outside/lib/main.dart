@@ -161,21 +161,43 @@ class _MyHomePageState extends State<MyHomePage> {
                       document.data()! as Map<String, dynamic>;
                   if (data.containsKey("ref")) {
                     String ref = data['ref'];
-                    return Dismissible(
-                        key: Key(document.id),
-                        onDismissed: (direction) {
-                          firestore.collection(room).doc(document.id).delete();
-                          storage.ref().child(room).child(ref).delete();
-                        },
-                        background: const SwipeToDeleteBackground(),
-                        child: ListTile(
-                          title: Text(data['name']),
-                          subtitle: (imageExtensions
-                                  .contains(p.extension(ref).toLowerCase()))
-                              ? FirebaseImage(
-                                  storage.ref().child(room).child(ref))
-                              : Text(ref),
-                        ));
+                    if (imageExtensions
+                        .contains(p.extension(ref).toLowerCase())) {
+                      return Dismissible(
+                          key: Key(document.id),
+                          onDismissed: (direction) {
+                            firestore
+                                .collection(room)
+                                .doc(document.id)
+                                .delete();
+                            storage.ref().child(room).child(ref).delete();
+                          },
+                          background: const SwipeToDeleteBackground(),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Row(
+                              children: [
+                                Text(data['name']),
+                                const Spacer(),
+                                FirebaseImage(
+                                    storage.ref().child(room).child(ref))
+                              ],
+                            ),
+                          ));
+                    } else {
+                      return Dismissible(
+                          key: Key(document.id),
+                          onDismissed: (direction) {
+                            firestore
+                                .collection(room)
+                                .doc(document.id)
+                                .delete();
+                            storage.ref().child(room).child(ref).delete();
+                          },
+                          background: const SwipeToDeleteBackground(),
+                          child: ListTile(
+                              title: Text(data['name']), subtitle: Text(ref)));
+                    }
                   } else {
                     return Dismissible(
                         key: Key(document.id),
