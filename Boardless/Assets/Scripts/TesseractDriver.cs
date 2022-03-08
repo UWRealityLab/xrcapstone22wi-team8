@@ -10,6 +10,29 @@ public class TesseractDriver
     private TesseractWrapper _tesseract;
     private static readonly List<string> fileNames = new List<string> {"tessdata.tgz"};
 
+    private static readonly TesseractDriver _instance = new TesseractDriver();
+
+    // Explicit static constructor to tell C# compiler
+    // not to mark type as beforefieldinit
+    static TesseractDriver()
+    {
+    }
+
+    private TesseractDriver()
+    {
+        CheckTessVersion();
+        Setup(null);
+    }
+
+    public static TesseractDriver Instance
+    {
+        get
+        {
+            return _instance;
+        }
+    }
+
+
     public string CheckTessVersion()
     {
         _tesseract = new TesseractWrapper();

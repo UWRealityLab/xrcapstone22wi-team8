@@ -36,9 +36,7 @@ public class RecognizeText : MonoBehaviour
                 Debug.LogError("No rightHandedController");
             }
         }
-        _tesseractDriver = new TesseractDriver();
-        _tesseractDriver.CheckTessVersion();
-        _tesseractDriver.Setup(null);
+        _tesseractDriver = TesseractDriver.Instance;
     }
 
     // Enables scaling. Called when object starts selected.
