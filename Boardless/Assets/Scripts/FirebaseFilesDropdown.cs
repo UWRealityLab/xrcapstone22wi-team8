@@ -115,7 +115,8 @@ public class FirebaseFilesDropdown : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log($"File download NO: {path}.");
+                    Debug.LogError($"File download failed: {path}.");
+                    Debug.LogError(task.Exception);
                 }
             });
     }
@@ -183,7 +184,7 @@ public class FirebaseFilesDropdown : MonoBehaviour
                 GameObject quad = PhotonNetwork.Instantiate("NetworkedImageDisplay", SpawnLocation, Quaternion.identity, 0);
                 PhotonView photonView = PhotonView.Get(quad);
                 photonView.RPC(
-                    "LoadImage", RpcTarget.All,
+                    "LoadImage", RpcTarget.AllBuffered,
                     file.Name, file.RefOrNull, file.ContentOrNull, extension
                 );
                 return;

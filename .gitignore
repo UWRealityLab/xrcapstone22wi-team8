@@ -80,3 +80,4 @@ hugo.linux
 
 ## Android Logcat (logs viewer) user settings
 **/AndroidLogcatSettings.asset
+**/SaveImages/

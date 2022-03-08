@@ -11,6 +11,7 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
         spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player", transform.position, transform.rotation);
+        // TODO: all players broadcast pen size and color
     }
 
     public override void OnLeftRoom()

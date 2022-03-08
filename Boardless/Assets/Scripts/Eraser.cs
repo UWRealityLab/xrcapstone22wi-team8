@@ -19,16 +19,31 @@ public class Eraser : MonoBehaviour
     private Vector2 _touchPos;
     private InputDevice _leftController;
     private bool _lastPressed = false;
+    private FirebaseServices _firebase;
+
     void Start()
     {
         _renderer = _tip.GetComponent<Renderer>();
         _tipHeight = _tip.localScale.y * 3 /4;
         _tipOrigin = _tip.localPosition;
 
-        var rightHandedControllers = new List<UnityEngine.XR.InputDevice>();
+        var leftHandedControllers = new List<UnityEngine.XR.InputDevice>();
         var desiredCharacteristics = UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Left | UnityEngine.XR.InputDeviceCharacteristics.Controller;
-        UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristics, rightHandedControllers);
-        _leftController = rightHandedControllers[0];
+        UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristics, leftHandedControllers);
+
+        if (leftHandedControllers.Count > 0)
+        {
+            _leftController = leftHandedControllers[0];
+        }
+        else
+        {
+            if (!Application.isEditor)
+            {
+                Debug.LogError("No leftHandedControllers");
+            }
+        }
+
+        _firebase = FindObjectOfType<FirebaseServices>();
     }
 
     void Update()
@@ -68,12 +83,16 @@ public class Eraser : MonoBehaviour
                 if (y < 0 || y > _whiteboard.textureSize.y || x < 0 || x > _whiteboard.textureSize.x) return;
                 if ((lastBool != _lastPressed) && _lastPressed) {
                     byte[] bytes = _whiteboard.texture.EncodeToPNG();
-                    var dirPath = Application.persistentDataPath + "/../SaveImages/";
-                    Debug.Log(dirPath);
+                    var dirPath = System.IO.Path.Combine(Application.persistentDataPath, "SaveImages");
                     if(!System.IO.Directory.Exists(dirPath)) {
+                        Debug.Log($"Creating {dirPath}");
                         System.IO.Directory.CreateDirectory(dirPath);
                     }
-                    System.IO.File.WriteAllBytes(dirPath + "Image" +System.DateTime.UtcNow.ToString("yyyy-MM-dd-HH-mm-ss")+ ".png", bytes);
+                    string filename = "Image" + DateTime.UtcNow.ToString("yyyy-MM-dd-HH-mm-ss") + ".png";
+                    _firebase.AddFile(bytes, filename);
+                    string path = System.IO.Path.Combine(dirPath, filename);
+                    Debug.Log($"Saving to {path}");
+                    System.IO.File.WriteAllBytes(path, bytes);
                     return;
                 }
                 return;

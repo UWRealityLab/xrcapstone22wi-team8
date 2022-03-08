@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44877666, g: 0.49883163, b: 0.5756934, a: 1}
+  m_IndirectSpecularColor: {r: 0.44877625, g: 0.4988314, b: 0.575693, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 704ea9ed5fe084673a74e950b7a4ebed, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -556,17 +556,17 @@ PrefabInstance:
       propertyPath: onColorChange.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: updateColor
       objectReference: {fileID: 0}
-    - target: {fileID: 2317961334674633462, guid: 2822a103803804112813c064a1773ca2, type: 3}
-      propertyPath: m_AnchorMax.x
+    - target: {fileID: 2317961334900172303, guid: 2822a103803804112813c064a1773ca2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2317961334674633462, guid: 2822a103803804112813c064a1773ca2, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2317961334674633462, guid: 2822a103803804112813c064a1773ca2, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
+    - target: {fileID: 2317961334900172303, guid: 2822a103803804112813c064a1773ca2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3168500535834240476}
+    - target: {fileID: 2317961334900172303, guid: 2822a103803804112813c064a1773ca2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: updatePensize
       objectReference: {fileID: 0}
     - target: {fileID: 2317961334907588324, guid: 2822a103803804112813c064a1773ca2, type: 3}
       propertyPath: m_PresetInfoIsWorld
@@ -2377,6 +2377,14 @@ PrefabInstance:
     - target: {fileID: 1644224744349899715, guid: fbac0980a01857f4d959b173fdc378a4, type: 3}
       propertyPath: m_Name
       value: Eraser
+      objectReference: {fileID: 0}
+    - target: {fileID: 1644224744588745353, guid: fbac0980a01857f4d959b173fdc378a4, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1644224745267395413, guid: fbac0980a01857f4d959b173fdc378a4, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6823518009147502549, guid: fbac0980a01857f4d959b173fdc378a4, type: 3}
       propertyPath: _penSize
