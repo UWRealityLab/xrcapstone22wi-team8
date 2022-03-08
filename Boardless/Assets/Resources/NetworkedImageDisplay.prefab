@@ -317,6 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texture: {fileID: 0}
   textureSize: {x: 512, y: 512}
+  inputTexture: {fileID: 0}
 --- !u!114 &4473010271549721243
 MonoBehaviour:
   m_ObjectHideFlags: 0

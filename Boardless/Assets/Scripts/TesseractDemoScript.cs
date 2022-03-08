@@ -16,7 +16,7 @@ public class TesseractDemoScript : MonoBehaviour
         texture.SetPixels32(imageToRecognize.GetPixels32());
         texture.Apply();
 
-        _tesseractDriver = new TesseractDriver();
+        _tesseractDriver = TesseractDriver.Instance;
         Recoginze(texture);
     }
 

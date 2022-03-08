@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 1017157712070678648}
   - component: {fileID: 1017157712070678655}
   - component: {fileID: 6152431464793448981}
+  - component: {fileID: 8092327557027278}
   m_Layer: 0
   m_Name: Marker
   m_TagString: Untagged
@@ -145,6 +146,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tip: {fileID: 1017157710886893805}
   _penSize: 15
+  fcp: {fileID: 0}
+  _colorUpdater: {fileID: 8092327557027278}
+--- !u!114 &8092327557027278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017157712070678651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fb53f51cdfec40f4935e94b32fb7bf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _whiteboardMarker: {fileID: 6152431464793448981}
 --- !u!1 &1017157712355072304
 GameObject:
   m_ObjectHideFlags: 0
