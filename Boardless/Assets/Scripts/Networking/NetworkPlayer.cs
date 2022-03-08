@@ -4,13 +4,14 @@ using UnityEngine;
 using Photon.Pun;
 using Unity.XR.CoreUtils;
 
-public class NetworkPlayer : MonoBehaviour 
-{ 
+public class NetworkPlayer : MonoBehaviour
+{
 
     public Transform head;
     public Transform leftHand;
     public Transform rightHand;
     private PhotonView photonView;
+    public WhiteboardMarker Marker;
 
     private Transform headRig;
     private Transform leftHandRig;
@@ -30,7 +31,7 @@ public class NetworkPlayer : MonoBehaviour
         // Don't display the network avatar version of yourself
         if (photonView.IsMine)
         {
-            foreach(var item in GetComponentsInChildren<Renderer>())
+            foreach (var item in GetComponentsInChildren<Renderer>())
             {
                 item.enabled = false;
             }
@@ -53,5 +54,17 @@ public class NetworkPlayer : MonoBehaviour
     {
         target.position = rigTransform.position;
         target.rotation = rigTransform.rotation;
+    }
+
+    [PunRPC]
+    private void UpdateMarkerSize(float penSize)
+    {
+        Marker.ActuallyUpdatePenSize(penSize);
+    }
+
+    [PunRPC]
+    private void UpdateMarkerColor(Vector3 newColor, float alpha)
+    {
+        Marker.ActuallyUpdateColor(new Color(newColor[0], newColor[1], newColor[2], alpha));
     }
 }

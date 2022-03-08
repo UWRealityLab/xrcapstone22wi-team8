@@ -1660,6 +1660,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 382f18ec37a584429b492fd4f1f87d9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Marker: {fileID: 3168500535834240476}
+  MyPhotonView: {fileID: 0}
 --- !u!4 &574048450
 Transform:
   m_ObjectHideFlags: 0
@@ -2380,11 +2382,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1644224744588745353, guid: fbac0980a01857f4d959b173fdc378a4, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1644224745267395413, guid: fbac0980a01857f4d959b173fdc378a4, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6823518009147502549, guid: fbac0980a01857f4d959b173fdc378a4, type: 3}
       propertyPath: _penSize
@@ -3817,6 +3819,10 @@ PrefabInstance:
       propertyPath: _penSize
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 5409184683922059715, guid: 30406306db091bb4a84645ae3fd45fa8, type: 3}
+      propertyPath: _networkPlayerSpawner
+      value: 
+      objectReference: {fileID: 574048449}
     - target: {fileID: 7177526938586978696, guid: 30406306db091bb4a84645ae3fd45fa8, type: 3}
       propertyPath: m_Name
       value: Marker

@@ -5,12 +5,14 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.XR;
 using System;
+using Photon.Pun;
 
 public class WhiteboardMarker : MonoBehaviour
 {
     [SerializeField] private Transform _tip;
+    [SerializeField] private NetworkPlayerSpawner _networkPlayerSpawner;
     public int _penSize = 5;
-    
+
     private Vector3 _tipOrigin;
     private Renderer _renderer;
     private Color[] _colors;
@@ -29,7 +31,7 @@ public class WhiteboardMarker : MonoBehaviour
     {
         GetRenderer();
         _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
-        _tipHeight = _tip.localScale.y * 3 /4;
+        _tipHeight = _tip.localScale.y * 3 / 4;
         _tipOrigin = _tip.localPosition;
         cast_pos = transform.up;
     }
@@ -42,9 +44,10 @@ public class WhiteboardMarker : MonoBehaviour
     private void Draw()
     {
         int layer_mask = LayerMask.GetMask("Whiteboard");
-        if (Physics.Raycast(_tip.position, cast_pos, out _touch, _tipHeight*1.45f, layer_mask))
+        if (Physics.Raycast(_tip.position, cast_pos, out _touch, _tipHeight * 1.45f, layer_mask))
         {
-            if(_touch.distance < _tipHeight*0.98) {
+            if (_touch.distance < _tipHeight * 0.98)
+            {
                 if (_touch.transform.CompareTag("Whiteboard"))
                 {
                     if (_whiteboard == null)
@@ -53,7 +56,8 @@ public class WhiteboardMarker : MonoBehaviour
                     }
                     cast_pos = -_touch.normal;
                     _touchPos = new Vector2(_touch.textureCoord.x, _touch.textureCoord.y);
-                    if (_touch.distance <= 0.015) {
+                    if (_touch.distance <= 0.015)
+                    {
                         var curr = _tip.transform.localPosition;
                         curr.y -= 0.008f;
                         _tip.transform.localPosition = curr;
@@ -95,7 +99,7 @@ public class WhiteboardMarker : MonoBehaviour
                         return;
                     }
                     if (_touchedLastFrame)
-                    {   
+                    {
                         _whiteboard.texture.SetPixels(x, y, _penSize, _penSize, _colors);
 
                         for (float f = 0.005f; f < 1.00f; f += 0.005f)
@@ -107,13 +111,13 @@ public class WhiteboardMarker : MonoBehaviour
                             _whiteboard.texture.SetPixels(lerpX, lerpY, _penSize, _penSize, _colors);
                         }
 
-                            // transform.rotation = _lastTouchRot;
-                        
+                        // transform.rotation = _lastTouchRot;
+
                         _whiteboard.texture.Apply();
                     }
 
                     _lastTouchPos = new Vector2(x, y);
-                     //_lastTouchRot = transform.rotation;
+                    //_lastTouchRot = transform.rotation;
                     _touchedLastFrame = true;
                     return;
                 }
@@ -125,20 +129,63 @@ public class WhiteboardMarker : MonoBehaviour
         _touchedLastFrame = false;
     }
 
-    public void updatePensize(float pensize) {
+    public void UpdatePenSizeAndColor()
+    {
+        if (_networkPlayerSpawner is null)
+        {
+            return;
+        }
         GetRenderer();
-        _penSize = (int)pensize;
-        _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
-
-        // TODO: RPC this realtime
+        _networkPlayerSpawner.MyPhotonView.RPC("UpdateMarkerSize", RpcTarget.Others, _penSize);
+        SendNewColorOverRPC(RpcTarget.Others, _renderer.material.color);
     }
 
-    public void updateColor(Color newcolor) {
-        GetRenderer();
-        _renderer.material.color = newcolor;
-        _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
+    public void updatePensize(float pensize)
+    {
+        ActuallyUpdatePenSize(pensize);
+        if (_networkPlayerSpawner is null)
+        {
+            return;
+        }
+        _networkPlayerSpawner.MyPhotonView.RPC("UpdateMarkerSize", RpcTarget.All, pensize);
+    }
 
-        // TODO: RPC this realtime
+    public void updateColor(Color newcolor)
+    {
+        ActuallyUpdateColor(newcolor);
+        SendNewColorOverRPC(RpcTarget.All, newcolor);
+    }
+
+    private void SendNewColorOverRPC(RpcTarget target, Color newColor)
+    {
+        if (_networkPlayerSpawner is null)
+        {
+            return;
+        }
+        if (_networkPlayerSpawner.MyPhotonView is null)
+        {
+            Debug.LogWarning("Update Color before RPC is ready");
+            return;
+        }
+        _networkPlayerSpawner.MyPhotonView.RPC(
+            "UpdateMarkerColor", target,
+            new Vector3(newColor.r, newColor.g, newColor.b),
+            newColor.a
+        );
+    }
+
+    public void ActuallyUpdatePenSize(float penSize)
+    {
+        GetRenderer();
+        _penSize = (int)penSize;
+        _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
+    }
+
+    public void ActuallyUpdateColor(Color newColor)
+    {
+        GetRenderer();
+        _renderer.material.color = newColor;
+        _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
     }
 
     public Color CurrentColor()
