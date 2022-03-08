@@ -9,7 +9,6 @@ public class PanelControl : MonoBehaviour
     public GameObject Panel;
     public Camera Cam;
     public Vector3 LocalPos;
-
     private InputDevice _rightController;
     private bool _lastPressed = false;
     // Sets up the controller GameObject and InputDevice and gets the Rigidbody.
@@ -35,10 +34,7 @@ public class PanelControl : MonoBehaviour
 
     public void TogglePanel()
     {
-        if (Panel != null)
-        {
-            Panel.SetActive(!Panel.activeSelf);
-        }
+        Panel.transform.parent.localScale = new Vector3(1-Panel.transform.parent.localScale.x,1-Panel.transform.parent.localScale.y,1-Panel.transform.parent.localScale.z);
     }
 
     void FixedUpdate()
