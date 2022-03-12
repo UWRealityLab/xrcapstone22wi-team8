@@ -35,7 +35,17 @@ public class ChangeScale : MonoBehaviour
         var desiredCharacteristics = UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Left | UnityEngine.XR.InputDeviceCharacteristics.Controller;
         UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristics, leftHandedControllers);
 
-        _leftController = leftHandedControllers[0];
+        if (leftHandedControllers.Count > 0)
+        {
+            _leftController = leftHandedControllers[0];
+        }
+        else
+        {
+            if (!Application.isEditor)
+            {
+                Debug.LogError("No leftHandedControllers");
+            }
+        }
         _scaleInstruction = GameObject.Find("ScaleInstruction");
     }
 
@@ -83,6 +93,10 @@ public class ChangeScale : MonoBehaviour
                 }
             }
             transform.localScale = Vector3.Max(Vector3.zero, transform.localScale + diff);
+            if (transform.localScale.Equals(Vector3.zero))
+            {
+                Destroy(this);
+            }
         }
     }
 }
