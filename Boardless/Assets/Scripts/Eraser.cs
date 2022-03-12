@@ -53,10 +53,6 @@ public class Eraser : MonoBehaviour
 
     private void Draw()
     {
-        var lastBool = _lastPressed;
-        if (!_leftController.TryGetFeatureValue(CommonUsages.triggerButton, out _lastPressed)) {
-            return;
-        }
         int layer_mask = LayerMask.GetMask("Whiteboard");
         if (Physics.Raycast(_tip.position, transform.up, out _touch, _tipHeight*1.45f, layer_mask))
         {
@@ -81,6 +77,10 @@ public class Eraser : MonoBehaviour
                 var y = (int)(_touchPos.y * _whiteboard.textureSize.y - (_penSize / 2));
 
                 if (y < 0 || y > _whiteboard.textureSize.y || x < 0 || x > _whiteboard.textureSize.x) return;
+                var lastBool = _lastPressed;
+                if (!_leftController.TryGetFeatureValue(CommonUsages.triggerButton, out _lastPressed)) {
+                    return;
+                }
                 if ((lastBool != _lastPressed) && _lastPressed) {
                     byte[] bytes = _whiteboard.texture.EncodeToPNG();
                     var dirPath = System.IO.Path.Combine(Application.persistentDataPath, "SaveImages");

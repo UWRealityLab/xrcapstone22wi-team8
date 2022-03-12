@@ -23,7 +23,7 @@ public class WhiteboardMarker : MonoBehaviour
     private Vector2 _touchPos, _lastTouchPos;
     private bool _touchedLastFrame;
     private Quaternion _lastTouchRot;
-    private Vector3 cast_pos;
+    //private Vector3 cast_pos;
 
     [SerializeField] private WhiteboardMarkerColorUpdating _colorUpdater;
 
@@ -31,9 +31,9 @@ public class WhiteboardMarker : MonoBehaviour
     {
         GetRenderer();
         _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
-        _tipHeight = _tip.localScale.y * 3 / 4;
+        _tipHeight = _tip.localScale.y * 4 / 5;
         _tipOrigin = _tip.localPosition;
-        cast_pos = transform.up;
+        //cast_pos = transform.up;
     }
 
     void Update()
@@ -44,17 +44,15 @@ public class WhiteboardMarker : MonoBehaviour
     private void Draw()
     {
         int layer_mask = LayerMask.GetMask("Whiteboard");
-        if (Physics.Raycast(_tip.position, cast_pos, out _touch, _tipHeight * 1.45f, layer_mask))
+        if (Physics.Raycast(_tip.position, transform.up, out _touch, _tipHeight, layer_mask))
         {
-            if (_touch.distance < _tipHeight * 0.98)
-            {
                 if (_touch.transform.CompareTag("Whiteboard"))
                 {
                     if (_whiteboard == null)
                     {
                         _whiteboard = _touch.transform.GetComponent<Whiteboard>();
                     }
-                    cast_pos = -_touch.normal;
+                    //cast_pos = -_touch.normal;
                     _touchPos = new Vector2(_touch.textureCoord.x, _touch.textureCoord.y);
                     if (_touch.distance <= 0.015)
                     {
@@ -121,9 +119,8 @@ public class WhiteboardMarker : MonoBehaviour
                     _touchedLastFrame = true;
                     return;
                 }
-            }
         }
-        cast_pos = transform.up;
+        //cast_pos = transform.up;
         _tip.transform.localPosition = _tipOrigin;
         _whiteboard = null;
         _touchedLastFrame = false;
