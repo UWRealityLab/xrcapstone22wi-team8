@@ -135,7 +135,6 @@ public class WhiteboardMarker : MonoBehaviour
         {
             return;
         }
-        GetRenderer();
         _networkPlayerSpawner.MyPhotonView.RPC("UpdateMarkerSize", RpcTarget.Others, _penSize);
         SendNewColorOverRPC(RpcTarget.Others, _renderer.material.color);
     }
@@ -176,21 +175,19 @@ public class WhiteboardMarker : MonoBehaviour
 
     public void ActuallyUpdatePenSize(float penSize)
     {
-        GetRenderer();
         _penSize = (int)penSize;
         _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
     }
 
     public void ActuallyUpdateColor(Color newColor)
     {
-        GetRenderer();
         _renderer.material.color = newColor;
         _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
     }
 
     public Color CurrentColor()
     {
-        return GetRenderer().material.color;
+        return _renderer.material.color;
     }
 
     private Renderer GetRenderer()

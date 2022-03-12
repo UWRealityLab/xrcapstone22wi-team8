@@ -9,13 +9,14 @@ public class WhiteboardMarkerColorUpdating : MonoBehaviour
 
     private InputDevice _rightController;
     private InputDevice _leftController;
-    private bool _eraserMode = false;
+    public bool _eraserMode;
     private Color _oldColor;
     private bool _lastPressed = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        _eraserMode = false;
         var rightHandedControllers = new List<InputDevice>();
         var desiredCharacteristics = InputDeviceCharacteristics.HeldInHand | InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller;
         InputDevices.GetDevicesWithCharacteristics(desiredCharacteristics, rightHandedControllers);
