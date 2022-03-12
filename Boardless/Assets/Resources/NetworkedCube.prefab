@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InputScale: 0.3
+  Instruction: Move with right controller. Use joystick to change distance
 --- !u!114 &2820558030522440062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +141,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InputScale: 0.3
+  Instruction: 'Use joystick to change scale. Press X to change the dimension
+
+    Curr
+    dim: '
 --- !u!114 &7600314201067792765
 MonoBehaviour:
   m_ObjectHideFlags: 0

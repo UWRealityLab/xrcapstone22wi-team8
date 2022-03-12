@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Firebase;
 using Firebase.Firestore;
 using Firebase.Storage;
@@ -90,6 +91,31 @@ public class FirebaseServices : MonoBehaviour
         });
     }
 
+    public void AddFile(byte[] bytes, string name)
+    {
+        Debug.Log($"Uploading to {name}");
+        string fileRef = name;
+        _storage.GetReference($"{Room}/{fileRef}")
+            .PutBytesAsync(bytes)
+            .ContinueWith(task =>
+            {
+                if (!task.IsFaulted && !task.IsCanceled)
+                {
+                    Debug.Log($"File upload OK: {name}, adding entry");
+                    _db.Collection(Room).AddAsync(new Dictionary<string, object>
+                    {
+                        { "name", name },
+                        { "ref", fileRef }
+                    });
+                }
+                else
+                {
+                    Debug.LogError($"File upload failed: {name}.");
+                    Debug.LogError(task.Exception);
+                }
+            });
+    }
+
     /// <summary>
     /// See https://firebase.google.com/docs/storage/unity/download-files on
     /// how to download the file contents.
@@ -109,5 +135,37 @@ public class FirebaseServices : MonoBehaviour
             text = document.GetValue<string>("content");
         }
         return text;
+    }
+
+    public string LocalDirectory()
+    {
+        return Path.Combine(Application.persistentDataPath, FirebaseServices.Room);
+    }
+
+    public string LocalPathForFile(FirebaseFile file)
+    {
+        if (file.RefOrNull == null)
+        {
+            Debug.LogWarning($"Getting path for {file.Name} but not a file");
+            return null;
+        }
+        else
+        {
+            return Path.Combine(LocalDirectory(), file.RefOrNull);
+        }
+    }
+
+    public string LocalURIForFile(FirebaseFile file)
+    {
+        string path = LocalPathForFile(file);
+        if (path == null)
+        {
+            Debug.LogWarning($"Getting URI for {file.Name} but not a file");
+            return null;
+        }
+        else
+        {
+            return new Uri(path).AbsoluteUri;
+        }
     }
 }

@@ -64,7 +64,10 @@ public class Lobby : MonoBehaviourPunCallbacks
         controlPanel.SetActive(false);
 
         // TODO: figure out how to enter this properly (OSK)
-        PhotonNetwork.NickName = "TestUser";
+        if (string.IsNullOrWhiteSpace(PhotonNetwork.NickName))
+        {
+            PhotonNetwork.NickName = "TestUser";
+        }
 
         // check if we are connected or not, we join if we are, else we initiate the connection to the server.
         if (PhotonNetwork.IsConnected)
