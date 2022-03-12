@@ -25,8 +25,9 @@ public class ChangeScale : MonoBehaviour
     private InputDevice _leftController;
     private ScaleMode _mode;
     private GameObject _scaleInstruction;
+    private bool _primaryButtonPressed = false;
 
-    
+
     // Get the left controller as Input device.
     void Awake()
     {
@@ -34,7 +35,17 @@ public class ChangeScale : MonoBehaviour
         var desiredCharacteristics = UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Left | UnityEngine.XR.InputDeviceCharacteristics.Controller;
         UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristics, leftHandedControllers);
 
-        _leftController = leftHandedControllers[0];
+        if (leftHandedControllers.Count > 0)
+        {
+            _leftController = leftHandedControllers[0];
+        }
+        else
+        {
+            if (!Application.isEditor)
+            {
+                Debug.LogError("No leftHandedControllers");
+            }
+        }
         _scaleInstruction = GameObject.Find("ScaleInstruction");
     }
 
@@ -58,10 +69,13 @@ public class ChangeScale : MonoBehaviour
     {
         if (_enable)
         {
-            if (_leftController.TryGetFeatureValue(CommonUsages.primaryButton, out bool inputBool) && inputBool)
+            var oldValue = _primaryButtonPressed;
+            if (_leftController.TryGetFeatureValue(CommonUsages.primaryButton, out _primaryButtonPressed))
             {
-                _mode = _mode == ScaleMode.Overall ? ScaleMode.X : _mode + 1;
-                _scaleInstruction.GetComponent<UnityEngine.UI.Text>().text = Instruction + Enum.GetName(typeof(ScaleMode), _mode);
+                if ((oldValue != _primaryButtonPressed) && _primaryButtonPressed) {
+                    _mode = _mode == ScaleMode.Overall ? ScaleMode.X : _mode + 1;
+                    _scaleInstruction.GetComponent<UnityEngine.UI.Text>().text = Instruction + Enum.GetName(typeof(ScaleMode), _mode);
+                }
             }
 
             Vector3 diff = Vector3.zero;
@@ -79,6 +93,10 @@ public class ChangeScale : MonoBehaviour
                 }
             }
             transform.localScale = Vector3.Max(Vector3.zero, transform.localScale + diff);
+            if (transform.localScale.Equals(Vector3.zero))
+            {
+                Destroy(this);
+            }
         }
     }
 }

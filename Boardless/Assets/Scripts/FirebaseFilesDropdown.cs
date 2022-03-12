@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Firebase.Firestore;
-using Firebase.Storage;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -18,26 +18,23 @@ public class FirebaseFilesDropdown : MonoBehaviour
 
     // document id -> file
     private SortedList<string, FirebaseFile> _documents = new SortedList<string, FirebaseFile>();
-    private struct FirebaseFile
+
+    private void Awake()
     {
-        public string Name;
-        public string RefOrNull;
-        public string ContentOrNull;
+        _dropDown = GetComponent<Dropdown>();
+        _dropDown.ClearOptions();
+        _dropDown.options.Add(new Dropdown.OptionData { text = "Select document to add" });
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        _dropDown = GetComponent<Dropdown>();
-        _dropDown.ClearOptions();
-        _dropDown.options.Add(new Dropdown.OptionData { text = "Select document to add" });
-
         Firebase.OnRoomDocumentsChange = OnRoomDocumentsChange;
         _dropDown.onValueChanged.AddListener(delegate
         {
             OnDropdownValueChange(_dropDown);
         });
-        string directoryPath = LocalDirectory();
+        string directoryPath = Firebase.LocalDirectory();
         if (!Directory.Exists(directoryPath))
         {
             Directory.CreateDirectory(directoryPath);
@@ -95,39 +92,9 @@ public class FirebaseFilesDropdown : MonoBehaviour
         };
     }
 
-    private string LocalDirectory()
-    {
-        return Path.Combine(Application.persistentDataPath, FirebaseServices.Room);
-    }
-
-    private string LocalPathForFile(FirebaseFile file)
-    {
-        if (file.RefOrNull == null)
-        {
-            return null;
-        }
-        else
-        {
-            return Path.Combine(LocalDirectory(), file.RefOrNull);
-        }
-    }
-
-    private string LocalURIForFile(FirebaseFile file)
-    {
-        string path = LocalPathForFile(file);
-        if (path == null)
-        {
-            return null;
-        }
-        else
-        {
-            return new Uri(path).AbsoluteUri;
-        }
-    }
-
     private void DownloadIfFileRef(FirebaseFile file, bool downloadIfExists)
     {
-        string path = LocalPathForFile(file);
+        string path = Firebase.LocalPathForFile(file);
         if (path == null)
         {
             return;
@@ -139,7 +106,7 @@ public class FirebaseFilesDropdown : MonoBehaviour
         }
         Firebase.RefForDownload(file.RefOrNull)
             // Firebase expects starting with file://
-            .GetFileAsync(LocalURIForFile(file))
+            .GetFileAsync(Firebase.LocalURIForFile(file))
             .ContinueWith(task =>
             {
                 if (!task.IsFaulted && !task.IsCanceled)
@@ -148,7 +115,8 @@ public class FirebaseFilesDropdown : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log($"File download NO: {path}.");
+                    Debug.LogError($"File download failed: {path}.");
+                    Debug.LogError(task.Exception);
                 }
             });
     }
@@ -192,7 +160,7 @@ public class FirebaseFilesDropdown : MonoBehaviour
 
     private void InstantiateFile(FirebaseFile file)
     {
-        string path = LocalPathForFile(file);
+        string path = Firebase.LocalPathForFile(file);
         if (path == null)
         {
             Debug.LogError($"Trying to instantiate ${file.Name} without file in storage");
@@ -213,7 +181,12 @@ public class FirebaseFilesDropdown : MonoBehaviour
             case ".jpeg":
             case ".jpg":
             case ".png":
-                StartCoroutine(LoadImage(file, extension));
+                GameObject quad = PhotonNetwork.Instantiate("NetworkedImageDisplay", SpawnLocation, Quaternion.identity, 0);
+                PhotonView photonView = PhotonView.Get(quad);
+                photonView.RPC(
+                    "LoadImage", RpcTarget.AllBuffered,
+                    file.Name, file.RefOrNull, file.ContentOrNull, extension
+                );
                 return;
             case ".obj":
                 GameObject newObject = new Dummiesman.OBJLoader().Load(path);
@@ -291,53 +264,5 @@ public class FirebaseFilesDropdown : MonoBehaviour
         });
 
         // FIXME: implement sync over Photon
-    }
-
-    private IEnumerator LoadImage(FirebaseFile file, string extension)
-    {
-        // Note: Only JPG and PNG formats are supported.
-        // https://docs.unity3d.com/ScriptReference/Networking.UnityWebRequestTexture.GetTexture.html
-        using (UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(LocalURIForFile(file)))
-        {
-            yield return uwr.SendWebRequest();
-
-            if (uwr.result != UnityWebRequest.Result.Success)
-            {
-                Debug.LogError(uwr.error);
-                InstantiateTextDisplay($"Can't display {file.Name}");
-            }
-            else
-            {
-                GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
-                quad.transform.position = SpawnLocation;
-
-                MeshRenderer mr = quad.GetComponent<MeshRenderer>();
-                if (extension == ".png")
-                {
-                    // it could be transparent, so allow it
-                    mr.material = new Material(Shader.Find("Unlit/Transparent Cutout"));
-                }
-
-                Texture2D tex = DownloadHandlerTexture.GetContent(uwr);
-
-                // https://answers.unity.com/questions/1280514/how-to-make-gameobject-match-the-source-textures-s.html
-                mr.material.mainTexture = tex;
-                float x, y;
-                if (tex.height < tex.width)
-                {
-                    y = 0.5f;
-                    x = y / tex.height * tex.width;
-                }
-                else
-                {
-                    x = 0.5f;
-                    y = x / tex.width * tex.height;
-                }
-                quad.transform.localScale = new Vector3(x, y, 1);
-                Debug.Log($"({x}, {y}) for {tex.width}, {tex.height}");
-
-                AddXRInteractions(quad);
-            }
-        }
     }
 }
