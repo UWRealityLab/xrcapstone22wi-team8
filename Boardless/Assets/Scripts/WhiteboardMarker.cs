@@ -24,10 +24,7 @@ public class WhiteboardMarker : MonoBehaviour
     private Quaternion _lastTouchRot;
     private Vector3 cast_pos;
     private InputDevice _rightController;
-    private InputDevice _leftController;
-    private bool _eraserMode = false;
-    private Color _oldColor;
-    private bool _lastPressed = false;
+
     void Start()
     {
         _renderer = _tip.GetComponent<Renderer>();
@@ -39,11 +36,8 @@ public class WhiteboardMarker : MonoBehaviour
         var rightHandedControllers = new List<UnityEngine.XR.InputDevice>();
         var desiredCharacteristics = UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Right | UnityEngine.XR.InputDeviceCharacteristics.Controller;
         UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristics, rightHandedControllers);
+
         _rightController = rightHandedControllers[0];
-        desiredCharacteristics = UnityEngine.XR.InputDeviceCharacteristics.HeldInHand | UnityEngine.XR.InputDeviceCharacteristics.Left | UnityEngine.XR.InputDeviceCharacteristics.Controller;
-        UnityEngine.XR.InputDevices.GetDevicesWithCharacteristics(desiredCharacteristics, rightHandedControllers);        
-        _leftController = rightHandedControllers[0];
-        _oldColor = Color.red;
     }
 
     void Update()
@@ -53,25 +47,6 @@ public class WhiteboardMarker : MonoBehaviour
 
     private void Draw()
     {
-        var lastBool = _lastPressed;
-        if (!_leftController.TryGetFeatureValue(CommonUsages.secondaryButton, out _lastPressed)) {
-            return;
-        }
-        if ((lastBool != _lastPressed) && _lastPressed) {
-            if (_eraserMode) {
-                updateColor(_oldColor);
-                _oldColor = Color.white;
-            } else {
-                _oldColor = _renderer.material.color;
-                updateColor(Color.white);
-            }
-            _eraserMode = !_eraserMode;
-        }
-        // if (_rightController.TryGetFeatureValue(CommonUsages.triggerButton, out bool inputBool) && inputBool)
-        // {
-        //     _oldColor = _renderer.material.color;
-        //     updateColor(Color.White);
-        // }
         int layer_mask = LayerMask.GetMask("Whiteboard");
         if (Physics.Raycast(_tip.position, cast_pos, out _touch, _tipHeight*1.45f, layer_mask))
         {
@@ -125,7 +100,7 @@ public class WhiteboardMarker : MonoBehaviour
                     }
 
                     _lastTouchPos = new Vector2(x, y);
-                     //_lastTouchRot = transform.rotation;
+                //    _lastTouchRot = transform.rotation;
                     _touchedLastFrame = true;
                     return;
                 }
