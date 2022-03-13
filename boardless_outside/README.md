@@ -21,3 +21,11 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view the
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## Firebase and CORS
+
+[Install `gsutil`](https://cloud.google.com/storage/docs/gsutil_install) and [configure CORS](https://cloud.google.com/storage/docs/cross-origin) policy to access files on the web client (if it's not currently working):
+
+```sh
+gsutil cors set cors-config.json gs://xrcapstone22wi-team8.appspot.com
+```
