@@ -25,13 +25,16 @@ public class FirebaseFilesDropdown : MonoBehaviour
         public string ContentOrNull;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         _dropDown = GetComponent<Dropdown>();
         _dropDown.ClearOptions();
         _dropDown.options.Add(new Dropdown.OptionData { text = "Select document to add" });
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
         Firebase.OnRoomDocumentsChange = OnRoomDocumentsChange;
         _dropDown.onValueChanged.AddListener(delegate
         {
