@@ -3,9 +3,7 @@ using Photon.Pun;
 
 public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
 {
-    public WhiteboardMarker Marker;
     public PhotonView MyPhotonView;
-
 
     private GameObject spawnedPlayerPrefab;
 
@@ -17,7 +15,7 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
         MyPhotonView = spawnedPlayerPrefab.GetComponent<PhotonView>();
         if (MyPhotonView is null)
         {
-            Debug.Log("No MyPhotonView for self");
+            Debug.LogError("No MyPhotonView for self");
         }
     }
 

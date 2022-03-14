@@ -1471,6 +1471,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2317961335740742952, guid: e77023238cd1d4bca9e85b725be03fe5, type: 3}
+      propertyPath: Firebase
+      value: 
+      objectReference: {fileID: 1727961230}
     - target: {fileID: 2317961336202139408, guid: e77023238cd1d4bca9e85b725be03fe5, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1576,6 +1580,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2317961336465954892, guid: e77023238cd1d4bca9e85b725be03fe5, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398377209702860766, guid: e77023238cd1d4bca9e85b725be03fe5, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
@@ -1880,7 +1888,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 382f18ec37a584429b492fd4f1f87d9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Marker: {fileID: 0}
   MyPhotonView: {fileID: 0}
 --- !u!4 &574048450
 Transform:

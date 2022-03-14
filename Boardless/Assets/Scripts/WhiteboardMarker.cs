@@ -133,6 +133,7 @@ public class WhiteboardMarker : MonoBehaviour
             return;
         }
         _networkPlayerSpawner.MyPhotonView.RPC("UpdateMarkerSize", RpcTarget.Others, _penSize);
+        GetRenderer();
         SendNewColorOverRPC(RpcTarget.Others, _renderer.material.color);
     }
 
@@ -141,6 +142,11 @@ public class WhiteboardMarker : MonoBehaviour
         ActuallyUpdatePenSize(pensize);
         if (_networkPlayerSpawner is null)
         {
+            return;
+        }
+        if (_networkPlayerSpawner.MyPhotonView is null)
+        {
+            Debug.LogWarning("Update pen size before RPC is ready");
             return;
         }
         _networkPlayerSpawner.MyPhotonView.RPC("UpdateMarkerSize", RpcTarget.All, pensize);
@@ -172,21 +178,27 @@ public class WhiteboardMarker : MonoBehaviour
 
     public void ActuallyUpdatePenSize(float penSize)
     {
+        GetRenderer();
         _penSize = (int)penSize;
         _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
     }
 
     public void ActuallyUpdateColor(Color newColor)
     {
+        GetRenderer();
         _renderer.material.color = newColor;
         _colors = Enumerable.Repeat(_renderer.material.color, _penSize * _penSize).ToArray();
     }
 
     public Color CurrentColor()
     {
+        GetRenderer();
         return _renderer.material.color;
     }
 
+    /**
+     * Ensure that _renderer is not nil before accessing it.
+     */
     private Renderer GetRenderer()
     {
         if (_renderer is null)

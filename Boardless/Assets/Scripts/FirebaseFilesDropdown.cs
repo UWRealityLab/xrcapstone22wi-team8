@@ -21,6 +21,10 @@ public class FirebaseFilesDropdown : MonoBehaviour
 
     private void Awake()
     {
+        if (Firebase is null)
+        {
+            Firebase = FindObjectOfType<FirebaseServices>();
+        }
         _dropDown = GetComponent<Dropdown>();
         _dropDown.ClearOptions();
         _dropDown.options.Add(new Dropdown.OptionData { text = "Select document to add" });
