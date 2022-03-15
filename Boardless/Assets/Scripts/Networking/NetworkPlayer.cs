@@ -11,6 +11,7 @@ public class NetworkPlayer : MonoBehaviour
     public Transform leftHand;
     public Transform rightHand;
     private PhotonView photonView;
+    public GameObject MarkerObj;
     public WhiteboardMarker Marker;
 
     private Transform headRig;
@@ -21,6 +22,7 @@ public class NetworkPlayer : MonoBehaviour
     void Start()
     {
         photonView = GetComponent<PhotonView>();
+        Marker = MarkerObj.GetComponent<WhiteboardMarker>();
 
         // Get a reference to the XR origin and connect head and hand tracked objects
         XROrigin xrOrigin = FindObjectOfType<XROrigin>();

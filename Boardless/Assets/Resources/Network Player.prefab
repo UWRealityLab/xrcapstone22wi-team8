@@ -361,6 +361,7 @@ MonoBehaviour:
   head: {fileID: 3932318211387615112}
   leftHand: {fileID: 1437315723857072559}
   rightHand: {fileID: 9070757735487545412}
+  MarkerObj: {fileID: 7347318575704216942}
   Marker: {fileID: 0}
 --- !u!1 &2542501119931713801
 GameObject:

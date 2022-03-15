@@ -1,15 +1,15 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Photon.Pun;
 
-public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
+public class NetworkPlayerSpawner : MonoBehaviour
 {
     public PhotonView MyPhotonView;
 
     private GameObject spawnedPlayerPrefab;
 
-    public override void OnJoinedRoom()
+    public void OnEnable()
     {
-        base.OnJoinedRoom();
         Debug.Log("I joined room");
         spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player", transform.position, transform.rotation);
         MyPhotonView = spawnedPlayerPrefab.GetComponent<PhotonView>();
@@ -19,9 +19,8 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
         }
     }
 
-    public override void OnLeftRoom()
+    public void OnDisable()
     {
-        base.OnLeftRoom();
         PhotonNetwork.Destroy(spawnedPlayerPrefab);
     }
 }
